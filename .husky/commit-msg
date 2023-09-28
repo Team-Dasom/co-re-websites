@@ -42,17 +42,29 @@ if [ $RES == "needCheck" ]; then
   fi
 
   if [[ ! $FIRST_LINE =~ ^(✨ \[FEAT\] ) ]] &&
+      [[ ! $FIRST_LINE =~ ^(:sparkles: \[FEAT\] ) ]] &&
       [[ ! $FIRST_LINE =~ ^(✅ \[MOD\] ) ]] &&
+      [[ ! $FIRST_LINE =~ ^(:white_check_mark: \[MOD\] ) ]] &&
       [[ ! $FIRST_LINE =~ ^(➕ \[ADD\] ) ]] &&
+      [[ ! $FIRST_LINE =~ ^(:heavy_plus_sign: \[ADD\] ) ]] &&
       [[ ! $FIRST_LINE =~ ^(🎀 \[CHORE\] ) ]] &&
+      [[ ! $FIRST_LINE =~ ^(:ribbon: \[CHORE\] ) ]] &&
       [[ ! $FIRST_LINE =~ ^(⚰️ \[DEL\] ) ]] &&
+      [[ ! $FIRST_LINE =~ ^(:coffin: \[DEL\] ) ]] &&
       [[ ! $FIRST_LINE =~ ^(💄 \[UI\] ) ]] &&
+      [[ ! $FIRST_LINE =~ ^(:lipstick: \[UI\] ) ]] &&
       [[ ! $FIRST_LINE =~ ^(🔨 \[FIX\] ) ]] &&
+      [[ ! $FIRST_LINE =~ ^(:hammer: \[FIX\] ) ]] &&
       [[ ! $FIRST_LINE =~ ^(🔀 \[MERGE\] ) ]] &&
+      [[ ! $FIRST_LINE =~ ^(:twisted_rightwards_arrows: \[MERGE\] ) ]] &&
       [[ ! $FIRST_LINE =~ ^(🚚 \[MOVE\] ) ]] &&
+      [[ ! $FIRST_LINE =~ ^(:truck: \[MOVE\] ) ]] &&
       [[ ! $FIRST_LINE =~ ^(⏪️ \[RENAME\] ) ]] &&
+      [[ ! $FIRST_LINE =~ ^(:rewind: \[RENAME\] ) ]] &&
       [[ ! $FIRST_LINE =~ ^(♻️ \[REFACTOR\] ) ]] &&
-      [[ ! $FIRST_LINE =~ ^(📝 \[DOCS\] ) ]]; then
+      [[ ! $FIRST_LINE =~ ^(:recycle: \[REFACTOR\] ) ]] &&
+      [[ ! $FIRST_LINE =~ ^(📝 \[DOCS\] ) ]] &&
+      [[ ! $FIRST_LINE =~ ^(:memo: \[DOCS\] ) ]]; then
     RES="lintError2"
   fi
 
