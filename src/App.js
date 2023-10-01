@@ -1,11 +1,13 @@
 import React from 'react';
 import Header from './components/Header';
-import './style/globals.css'
+import './style/globals.css';
+import StartPage from './components/StartPage';
 
 export default function App() {
   return (
-    <div>
+    <div className='flex flex-col h-screen'>
       <Header />
+      <StartPage />
     </div>
   );
 }

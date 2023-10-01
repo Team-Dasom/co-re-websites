@@ -5,3 +5,7 @@
 .all-center {
   @apply flex justify-center items-center
 }
+
+.co-re-color {
+  @apply text-[#3B82F6]
+}
