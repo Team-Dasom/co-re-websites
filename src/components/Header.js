@@ -1,8 +1,10 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { AiOutlineMenu } from 'react-icons/ai';
 import { BsPersonCircle } from 'react-icons/bs';
+import LoginModal from './Login/LoginModal';
 
 export default function Header() {
+  const [isOpenModal, setIsOpenModal] = useState(false)
   return (
     <div className='flex w-full h-16 shadow-md'>
       <div className='flex items-center justify-start w-[10%] ml-4'>
@@ -20,12 +22,13 @@ export default function Header() {
         <a href='#'>Code 주석 처리</a>
         <a href='#'>컨텐츠 추천</a>
       </div>
-      <div className='flex items-center justify-end w-[10%] text-orange-700'>
+      <div className='flex items-center justify-end w-[10%] text-orange-700' onClick={()=>setIsOpenModal(true)}>
         <a href="#" className="flex items-center justify-center w-4/5 gap-2 mr-4 border border-orange-500 rounded-lg h-3/5">
           <BsPersonCircle /> 
           Login
         </a>
       </div>
+      {isOpenModal && <LoginModal setIsOpenModal={setIsOpenModal}/>}
     </div>
   );
 }
