@@ -1,13 +1,27 @@
 import React from 'react';
 import Header from './components/Header/Header';
 import './style/globals.css';
-import StartPage from './components/StartPage';
+import Main from './routes/MainPage';
+import { RecommandVariableName } from './routes/RecommandVariableNamePage';
+import ChangeCodeLanguage from './routes/ChangeCodeLanguagePage';
+import { RefactorCode } from './routes/RefactorCodePage';
+import { AddComment } from './routes/AddCommentPage';
+import { RecommandContent } from './routes/RecommandContentPage';
+import { Route, Routes } from 'react-router-dom';
 
 export default function App() {
   return (
     <div className='flex flex-col h-screen'>
       <Header />
-      <StartPage />
+      {/* <Main /> */}
+      <Routes>
+        <Route path='/' element={<Main />} />
+        <Route path='recommand-variable-name' element={<RecommandVariableName />} />
+        <Route path='change-language' element={<ChangeCodeLanguage />} />
+        <Route path='refactor' element={<RefactorCode />} />
+        <Route path='add-comment' element={<AddComment />} />
+        <Route path='recommand-content' element={<RecommandContent />} />
+      </Routes>
     </div>
   );
 }

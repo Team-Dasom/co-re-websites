@@ -1,7 +1,7 @@
 import React from 'react';
 import Logo from '../images/logo-icon.png';
 
-export default function StartPage() {
+export default function Main() {
   return (
     <div className='flex items-start justify-center flex-1 mt-[6rem]'>
       <div className='flex flex-col items-center w-1/2 p-5'>

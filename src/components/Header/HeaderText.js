@@ -1,7 +1,8 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 
-export default function HeaderText({ text }) {
+export default function HeaderText({ text, link }) {
   return (
-    <a href='#' className="menu-text-hover">{text}</a>
+    <Link to={link} className="menu-text-hover">{text}</Link>
   )
 }
