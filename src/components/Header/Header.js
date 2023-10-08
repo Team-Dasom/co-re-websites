@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { AiOutlineMenu } from 'react-icons/ai';
 import { BsPersonCircle } from 'react-icons/bs';
 import LoginModal from '../Login/LoginModal';
-import HeaderText from './HeaderText';
+import { NavLink } from 'react-router-dom';
 
 export default function Header() {
   const [isOpenModal, setIsOpenModal] = useState(false);
@@ -14,11 +14,11 @@ export default function Header() {
         </a>
       </div>
       <div className='flex items-center justify-start w-4/5 text-base font-bold gap-x-12 grow'>
-        <HeaderText link={'recommand-variable-name'} text={'변수명 추천'} />
-        <HeaderText link={'change-language'} text={'Code 언어 변경'} />
-        <HeaderText link={'refactor'} text={'Code 리팩토링'} />
-        <HeaderText link={'add-comment'} text={'Code 주석처리'} />
-        <HeaderText link={'recommand-content'} text={'컨텐츠 추천'} />
+        <NavLink to='recommand-variable-name' className={({isActive}) => isActive ? 'click' : 'menu-text-hover'}>변수명 추천</NavLink>
+        <NavLink to='change-language' className={({isActive}) => isActive ? 'click' : 'menu-text-hover'}>Code 언어 변경</NavLink>
+        <NavLink to='refactor' className={({isActive}) => isActive ? 'click' : 'menu-text-hover'}>Code 리팩토링</NavLink>
+        <NavLink to='add-comment' className={({isActive}) => isActive ? 'click' : 'menu-text-hover'}>Code 주석처리</NavLink>
+        <NavLink to='recommand-content' className={({isActive}) => isActive ? 'click' : 'menu-text-hover'}>컨텐츠 추천</NavLink>
       </div>
       <div
         className='flex items-center justify-end w-[10%] text-orange-700'

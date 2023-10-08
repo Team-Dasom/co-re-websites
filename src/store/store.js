@@ -1,16 +1,8 @@
-import { configureStore, createSlice } from '@reduxjs/toolkit';
-
-const a = createSlice({
-  name: 'a',
-  initialState: 'test',
-  reducers: {
-  	test(state, action) {
-    }
-  }
-})
+import { configureStore } from '@reduxjs/toolkit';
+import selectMenuSlice from './slices/selectMenuSlice';
 
 export default configureStore({
   reducer: {
-  	a: a.reducer
+    selectMenu: selectMenuSlice,
   },
 });
