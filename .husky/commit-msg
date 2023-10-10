@@ -45,6 +45,8 @@ if [ $RES == "needCheck" ]; then
       [[ ! $FIRST_LINE =~ ^(:sparkles: \[FEAT\] ) ]] &&
       [[ ! $FIRST_LINE =~ ^(✅ \[MOD\] ) ]] &&
       [[ ! $FIRST_LINE =~ ^(:white_check_mark: \[MOD\] ) ]] &&
+      [[ ! $FIRST_LINE =~ ^(🚑️ \[HOTFIX\] ) ]] &&
+      [[ ! $FIRST_LINE =~ ^(:ambulance: \[HOTFIX\] ) ]] &&
       [[ ! $FIRST_LINE =~ ^(➕ \[ADD\] ) ]] &&
       [[ ! $FIRST_LINE =~ ^(:heavy_plus_sign: \[ADD\] ) ]] &&
       [[ ! $FIRST_LINE =~ ^(🎀 \[CHORE\] ) ]] &&
