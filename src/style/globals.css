@@ -6,6 +6,14 @@
   @apply flex justify-center items-center
 }
 
+.click {
+  @apply text-[#3B82F6]
+}
+
+.menu-text-hover {
+  @apply hover:text-[#3B82F6]
+}
+
 .co-re-color {
   @apply text-[#3B82F6]
 }

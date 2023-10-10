@@ -8,12 +8,12 @@ import KakaoRedirect from './components/Login/KakaoRedirect';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
-  <BrowserRouter>
     <Provider store={store}>
-      <Routes>
-        <Route path='/' element={<App />}/>
-        <Route path='/kakao/user' element={<KakaoRedirect />} />
-      </Routes>
+     <BrowserRouter>
+        <Routes>
+          <Route path='/' element={<App />}/>
+          <Route path='/kakao/user' element={<KakaoRedirect />} />
+        </Routes>
+      </BrowserRouter>
     </Provider>,
-  </BrowserRouter>
 );
