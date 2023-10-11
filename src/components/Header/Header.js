@@ -22,17 +22,18 @@ export default function Header() {
       </div>
       <div
         className='flex items-center justify-end w-[10%] text-orange-700'
-        onClick={() => setIsOpenModal(true)}
       >
-        <a
-          href='/'
-          className='flex items-center justify-center w-4/5 gap-2 mr-4 border border-orange-500 rounded-lg h-3/5'
+        <div
+          className='flex items-center justify-center w-4/5 gap-2 mr-4 border border-orange-500 rounded-lg cursor-pointer h-3/5' 
+          onClick={() => {
+            setIsOpenModal(true)
+          }}
         >
           <BsPersonCircle />
           Login
-        </a>
+        </div>
       </div>
-      {isOpenModal && <LoginModal setIsOpenModal={setIsOpenModal} />}
+      {isOpenModal === true ? <LoginModal setIsOpenModal={setIsOpenModal} /> : null}
     </div>
   );
 }
