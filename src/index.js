@@ -4,16 +4,17 @@ import App from './App';
 import { Provider } from 'react-redux';
 import store from './store/store';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
-import KakaoRedirect from './components/Login/KakaoRedirect';
+import { CookiesProvider } from 'react-cookie';
+
+
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
+  <CookiesProvider>
     <Provider store={store}>
-     <BrowserRouter>
-        <Routes>
-          <Route path='/' element={<App />}/>
-          <Route path='/kakao/user' element={<KakaoRedirect />} />
-        </Routes>
+      <BrowserRouter basename='/'>
+        <App />
       </BrowserRouter>
-    </Provider>,
+    </Provider>
+  </CookiesProvider>
 );

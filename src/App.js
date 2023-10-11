@@ -8,6 +8,7 @@ import { RefactorCode } from './routes/RefactorCodePage';
 import { AddComment } from './routes/AddCommentPage';
 import { RecommandContent } from './routes/RecommandContentPage';
 import { Route, Routes } from 'react-router-dom';
+import KakaoRedirect from './components/Login/KakaoRedirect';
 
 export default function App() {
   return (
@@ -21,6 +22,7 @@ export default function App() {
         <Route path='refactor' element={<RefactorCode />} />
         <Route path='add-comment' element={<AddComment />} />
         <Route path='recommand-content' element={<RecommandContent />} />
+        <Route path='kakao/user' element={<KakaoRedirect />} />
       </Routes>
     </div>
   );
