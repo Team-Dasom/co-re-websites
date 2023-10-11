@@ -23,7 +23,7 @@ const KakaoRedirect = (props) => {
           "token" : `${token}`,
         }
         axios
-        .post(`http://54.180.28.153/api/v1/auth/login`,
+        .post(`http://54.180.28.153/api/v1/auth/signup`,
         body,
         {
           headers: {
@@ -34,7 +34,7 @@ const KakaoRedirect = (props) => {
           console.log("CO_RE data : " , response);
           // HTTP COOKIE는 서버에서 해줘야 해서 클라이언트 쪽에서는 만지는게 아닌 것 같단 소리를 들어서 
           // 잠시만 보류 하겠습니다 ..!
-          
+
           // const accessToken = response.data.data.accessToken
           // const accessTokenCookie = {accessToken: cookie.load(`accessToken`)}
           // console.log(accessTokenCookie)
