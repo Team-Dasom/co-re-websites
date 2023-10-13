@@ -9,6 +9,7 @@ import { AddComment } from './routes/AddCommentPage';
 import { RecommandContent } from './routes/RecommandContentPage';
 import { Route, Routes } from 'react-router-dom';
 import KakaoRedirect from './components/Login/KakaoRedirect';
+import MyPage from './routes/MyPage';
 
 export default function App() {
   return (
@@ -23,6 +24,7 @@ export default function App() {
         <Route path='add-comment' element={<AddComment />} />
         <Route path='recommand-content' element={<RecommandContent />} />
         <Route path='kakao/user' element={<KakaoRedirect />} />
+        <Route path='mypage' element={<MyPage />} />
       </Routes>
     </div>
   );
