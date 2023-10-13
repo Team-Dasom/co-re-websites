@@ -1,16 +1,10 @@
-import { configureStore, createSlice } from '@reduxjs/toolkit';
+import { configureStore} from '@reduxjs/toolkit';
+import userSlice from './KakaoLogin/kakaoUserSlice';
 
-const a = createSlice({
-  name: 'a',
-  initialState: 'test',
-  reducers: {
-  	test(state, action) {
-    }
-  }
-})
-
-export default configureStore({
+const store =  configureStore({
   reducer: {
-  	a: a.reducer
+    user: userSlice,
   },
 });
+
+export default store;
