@@ -2,10 +2,13 @@ import React, { useState } from 'react';
 import { AiOutlineMenu } from 'react-icons/ai';
 import { BsPersonCircle } from 'react-icons/bs';
 import LoginModal from '../Login/LoginModal';
-import { NavLink } from 'react-router-dom';
+import { NavLink, useNavigate } from 'react-router-dom';
+import { useSelector } from 'react-redux';
 
 export default function Header() {
   const [isOpenModal, setIsOpenModal] = useState(false);
+  const profileImage = useSelector((state) => state.user.profileImage);
+  const navigate = useNavigate();
   return (
     <div className='flex w-full h-16 shadow-md'>
       <div className='flex items-center justify-start w-[10%] ml-4'>
@@ -23,15 +26,24 @@ export default function Header() {
       <div
         className='flex items-center justify-end w-[10%] text-orange-700'
       >
-        <div
-          className='flex items-center justify-center w-4/5 gap-2 mr-4 border border-orange-500 rounded-lg cursor-pointer h-3/5' 
-          onClick={() => {
-            setIsOpenModal(true)
-          }}
-        >
-          <BsPersonCircle />
-          Login
-        </div>
+        {profileImage ? ( 
+                  <div>
+                    <img className='flex items-center justify-center w-[45px] h-[45px] gap-2 mr-4 rounded-[50%] cursor-pointer h-3/5' 
+                      src={profileImage} 
+                      onClick={()=>navigate('/mypage')}
+                      alt="프로필 이미지" />
+                  </div>
+                ) : (
+                  <div
+                    className='flex items-center justify-center w-4/5 gap-2 mr-4 border border-orange-500 rounded-lg cursor-pointer h-3/5' 
+                    onClick={() => {
+                      setIsOpenModal(true)
+                    }}
+                  >
+                    <BsPersonCircle />
+                    Login
+                  </div>
+                )}
       </div>
       {isOpenModal === true ? <LoginModal setIsOpenModal={setIsOpenModal} /> : null}
     </div>
