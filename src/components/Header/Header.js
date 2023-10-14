@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { AiOutlineMenu } from 'react-icons/ai';
 import { BsPersonCircle } from 'react-icons/bs';
-import LoginModal from '../Login/LoginModal';
+import LoginModal from 'components/Login/LoginModal';
 import { NavLink, useNavigate } from 'react-router-dom';
 import { useSelector } from 'react-redux';
 

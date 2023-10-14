@@ -1,15 +1,15 @@
 import React from 'react';
-import Header from './components/Header/Header';
-import './style/globals.css';
-import Main from './routes/MainPage';
-import { RecommandVariableName } from './routes/RecommandVariableNamePage';
-import ChangeCodeLanguage from './routes/ChangeCodeLanguagePage';
-import { RefactorCode } from './routes/RefactorCodePage';
-import { AddComment } from './routes/AddCommentPage';
-import { RecommandContent } from './routes/RecommandContentPage';
+import Header from 'components/Header/Header';
+import 'style/globals.css';
+import Main from 'pages/MainPage';
+import { RecommandVariableName } from 'pages/RecommandVariableNamePage';
+import ChangeCodeLanguage from 'pages/ChangeCodeLanguagePage';
+import { RefactorCode } from 'pages/RefactorCodePage';
+import { AddComment } from 'pages/AddCommentPage';
+import { RecommandContent } from 'pages/RecommandContentPage';
 import { Route, Routes } from 'react-router-dom';
-import KakaoRedirect from './components/Login/KakaoRedirect';
-import MyPage from './routes/MyPage';
+import KakaoRedirect from 'components/Login/KakaoRedirect';
+import MyPage from 'pages/MyPage';
 
 export default function App() {
   return (
