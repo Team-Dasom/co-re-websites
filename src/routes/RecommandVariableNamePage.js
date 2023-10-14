@@ -2,8 +2,12 @@ import React from 'react';
 import gptImg from '../images/gptImg.svg'
 import testImg from '../images/testImg.jpeg'
 import logo from '../images/logo-icon.png'
+import { useSelector } from 'react-redux';
+
 
 export function RecommandVariableName() {
+  const profileImage = useSelector((state) => state.user.profileImage);
+
   return (
     <div>
       {/* 지피티 바로가기 폴더 */}
@@ -19,7 +23,7 @@ export function RecommandVariableName() {
       <div className='place-items-center h-[550px] overflow-y-scroll pl-[200px] '>
         {/* 내가 요청한 변수 */}
         <div className='flex h-auto border-b border-[#B5B2B2] items-center p-[25px]'>
-          <img className='w-[64px] h-[64px] ml-[360px] rounded-[10px]' src={testImg} alt="testImg" />
+          <img className='w-[64px] h-[64px] ml-[360px] rounded-[10px]' src={profileImage} alt="testImg" />
           <div className='ml-[25px]'>자동차</div>
         </div>
       {/* 서버에서 가지고 온 내용 */}
