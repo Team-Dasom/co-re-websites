@@ -1,7 +1,6 @@
 //withAuth : 로그인 여부
 import MyPage from 'pages/MyPage';
 import Main from 'pages/MainPage';
-import Home from 'components/Home';
 import RecommandVariableName  from 'pages/RecommandVariableNamePage';
 import ChangeCodeLanguage from 'pages/ChangeCodeLanguagePage';
 import RefactorCode from 'pages/RefactorCodePage';
@@ -23,31 +22,41 @@ const routerData = [
     id: 1,
     path: '/recommand-variable-name',
     element: <RecommandVariableName />,
-    withAuth: false
+    withAuth: false,
+    label: '변수명 추천',
+    isMenu: true,
   },
   {
     id: 2,
     path: '/change-language',
     element: <ChangeCodeLanguage />,
-    withAuth: false
+    withAuth: false,
+    label: 'Code 언어 변경',
+    isMenu: true,
   },
   {
     id: 3,
     path: '/refactor',
     element: <RefactorCode />,
-    withAuth: false
+    label: 'Code 리팩토링',
+    withAuth: false,
+    isMenu: true,
   },
   {
     id: 4,
     path: '/add-comment',
     element: <AddComment />,
-    withAuth: false
+    label: 'Code 주석 생성',
+    withAuth: false,
+    isMenu: true,
   },
   {
     id: 5,
     path: '/recommand-content',
     element: <RecommandContent />,
-    withAuth: false
+    label: '컨텐츠 추천',
+    withAuth: false,
+    isMenu: true,
   },
   {
     id: 6,
@@ -71,3 +80,5 @@ export const routers = createBrowserRouter(
     }
   })
 )
+
+export const headerContent = routerData.filter((router) => router.isMenu)
