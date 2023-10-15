@@ -1,6 +1,6 @@
 import React from 'react';
 
-export function RecommandContent() {
+export default function RecommandContent() {
   return (
     <div>Recommand Content</div>
   )

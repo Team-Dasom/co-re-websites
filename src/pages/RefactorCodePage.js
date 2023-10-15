@@ -1,6 +1,6 @@
 import React from 'react';
 
-export function RefactorCode() {
+export default function RefactorCode() {
   return (
     <div>Refactor Code</div>
   )

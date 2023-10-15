@@ -1,6 +1,6 @@
 import React from 'react';
 
-export function AddComment() {
+export default function AddComment() {
   return (
     <div>Add Comment Page</div>
   )
