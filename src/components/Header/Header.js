@@ -2,7 +2,6 @@ import React, { useState } from 'react';
 import { AiOutlineMenu } from 'react-icons/ai';
 import { BsPersonCircle } from 'react-icons/bs';
 import LoginModal from 'components/Login/LoginModal';
-import { NavLink, useNavigate } from 'react-router-dom';
 import { useSelector } from 'react-redux';
 import { useRouter } from 'hooks/useRouter';
 import { headerContent } from 'router';
@@ -10,7 +9,6 @@ import { headerContent } from 'router';
 export default function Header() {
   const [isOpenModal, setIsOpenModal] = useState(false);
   const profileImage = useSelector((state) => state.user.profileImage);
-  const navigate = useNavigate();
   const { routeTo, currentPath } = useRouter();
 
   const headerMenuClickHandler = (path) => {
@@ -43,7 +41,7 @@ export default function Header() {
                   <div>
                     <img className='flex items-center justify-center w-[45px] h-[45px] gap-2 mr-4 rounded-[50%] cursor-pointer h-3/5' 
                       src={profileImage} 
-                      onClick={()=>navigate('/mypage')}
+                      onClick={()=>routeTo('/mypage')}
                       alt="프로필 이미지" />
                   </div>
                 ) : (
