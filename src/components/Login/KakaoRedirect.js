@@ -3,6 +3,7 @@ import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
 import { setUserProfile } from '../../store/KakaoLogin/kakaoUserSlice';
+import { setCookie } from '../Cookie/Cookies';
 
 
 const KakaoRedirect = (props) => { 
@@ -19,8 +20,6 @@ const KakaoRedirect = (props) => {
       try {
         const res = await axios.post(`https://kauth.kakao.com/oauth/token?client_id=${client_id}&redirect_uri=${redirect_uri}&code=${code}&grant_type=authorization_code`);
         const token = res.data.access_token;
-        console.log("token : ",token)
-        console.log(res)
         const status = res.status
         // window.localStorage.setItem('token', token);
 
@@ -29,14 +28,9 @@ const KakaoRedirect = (props) => {
             Authorization: `Bearer ${token}`,
           },
         });
-        const userKakaoDataId = userRes.data.id;
-        const userKakaoData = userRes.data
-        console.log("userKakaoData : ",userKakaoData)
         const profileImage = userRes.data.properties.profile_image;
         const nickname = userRes.data.properties.nickname;
         dispatch(setUserProfile({ profileImage, nickname }));
-        const userKakaoId = userKakaoDataId
-        console.log("userKakaoId : ",userKakaoId)
 
         // 여기서 부터 우리 서비스 서버에 요청 보내기 
         if(status === 200) {
@@ -54,7 +48,15 @@ const KakaoRedirect = (props) => {
           },
         })
         .then((response)=>{
-          console.log("CO_RE data : " , response);
+          console.log("CO_RE data : " , response.data);
+          const accessToken = response.data.data.accessToken
+          if(accessToken){
+            setCookie('loginToken',accessToken,{
+              path:'/',
+              secure:true,
+              sameSite:'none',
+            })
+          }
         }).catch((e)=>{
           console.log(e.toJSON().status)
           const status = e.toJSON().status
