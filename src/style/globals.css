@@ -7,11 +7,11 @@
 }
 
 .click {
-  @apply text-[#3B82F6]
+  @apply text-[#3B82F6] cursor-pointer
 }
 
 .menu-text-hover {
-  @apply hover:text-[#3B82F6]
+  @apply hover:text-[#3B82F6] cursor-pointer
 }
 
 .co-re-color {

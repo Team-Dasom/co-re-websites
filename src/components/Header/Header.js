@@ -1,14 +1,20 @@
 import React, { useState } from 'react';
 import { AiOutlineMenu } from 'react-icons/ai';
 import { BsPersonCircle } from 'react-icons/bs';
-import LoginModal from '../Login/LoginModal';
-import { NavLink, useNavigate } from 'react-router-dom';
+import LoginModal from 'components/Login/LoginModal';
 import { useSelector } from 'react-redux';
+import { useRouter } from 'hooks/useRouter';
+import { headerContent } from 'router';
 
 export default function Header() {
   const [isOpenModal, setIsOpenModal] = useState(false);
   const profileImage = useSelector((state) => state.user.profileImage);
-  const navigate = useNavigate();
+  const { routeTo, currentPath } = useRouter();
+
+  const headerMenuClickHandler = (path) => {
+    routeTo(path)
+  }
+
   return (
     <div className='flex w-full h-16 shadow-md'>
       <div className='flex items-center justify-start w-[10%] ml-4'>
@@ -17,11 +23,16 @@ export default function Header() {
         </a>
       </div>
       <div className='flex items-center justify-start w-4/5 text-base font-bold gap-x-12 grow'>
-        <NavLink to='recommand-variable-name' className={({isActive}) => isActive ? 'click' : 'menu-text-hover'}>변수명 추천</NavLink>
-        <NavLink to='change-language' className={({isActive}) => isActive ? 'click' : 'menu-text-hover'}>Code 언어 변경</NavLink>
-        <NavLink to='refactor' className={({isActive}) => isActive ? 'click' : 'menu-text-hover'}>Code 리팩토링</NavLink>
-        <NavLink to='add-comment' className={({isActive}) => isActive ? 'click' : 'menu-text-hover'}>Code 주석처리</NavLink>
-        <NavLink to='recommand-content' className={({isActive}) => isActive ? 'click' : 'menu-text-hover'}>컨텐츠 추천</NavLink>
+        {headerContent.map((element) => {
+          return (
+            <div 
+            key={element.path}
+            className={ currentPath === element.path ? 'click' : 'menu-text-hover' }
+            onClick={() => headerMenuClickHandler(element.path)}>
+              {element.label}
+            </div>
+          )
+        })}
       </div>
       <div
         className='flex items-center justify-end w-[10%] text-orange-700'
@@ -30,7 +41,7 @@ export default function Header() {
                   <div>
                     <img className='flex items-center justify-center w-[45px] h-[45px] gap-2 mr-4 rounded-[50%] cursor-pointer h-3/5' 
                       src={profileImage} 
-                      onClick={()=>navigate('/mypage')}
+                      onClick={()=>routeTo('/mypage')}
                       alt="프로필 이미지" />
                   </div>
                 ) : (

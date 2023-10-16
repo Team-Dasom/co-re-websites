@@ -1,7 +1,7 @@
 import React from 'react'
 import { useSelector } from 'react-redux';
 
-const MyPage = () => {
+export default function MyPage() {
     const profileImage = useSelector((state) => state.user.profileImage);
     const nickname = useSelector((state) => state.user.nickname);
   return (
@@ -13,4 +13,3 @@ const MyPage = () => {
   )
 }
 
-export default MyPage

@@ -3,7 +3,7 @@ import gptImg from '../images/gptImg.svg'
 import testImg from '../images/testImg.jpeg'
 import logo from '../images/logo-icon.png'
 
-export function RecommandVariableName() {
+export default function RecommandVariableName() {
   return (
     <div>
       {/* 지피티 바로가기 폴더 */}

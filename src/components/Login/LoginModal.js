@@ -1,8 +1,8 @@
 import React from 'react'
-import loginDelete from '../../images/LoginModalDelete.svg'
-import LoginCoReLogo from '../../images/LoginCoReLogo.svg'
-import GithubLogin from '../../images/GithubLogin.svg'
-import KakaoLogin from '../../images/KakaoLogin.svg'
+import loginDelete from 'images/LoginModalDelete.svg'
+import LoginCoReLogo from 'images/LoginCoReLogo.svg'
+import GithubLogin from 'images/GithubLogin.svg'
+import KakaoLogin from 'images/KakaoLogin.svg'
 
 
 
