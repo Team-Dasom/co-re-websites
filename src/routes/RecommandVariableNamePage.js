@@ -1,14 +1,16 @@
 import React, { useEffect, useState } from 'react';
-import gptImg from '../images/gptImg.svg'
 import { getCookie } from '../components/Cookie/Cookies';
 import axios from 'axios';
 import VariableName from '../components/VariableName/VariableName';
+import InputDropDown from '../components/VariableName/InputDropDown';
 
 export function RecommandVariableName() {
   const [inputValues, setInputValues] = useState(''); 
   const [variableData, setVariableData] = useState('')   
   const [inputString, setInputString] = useState('');
   const [variableDataArray, setVariableDataArray] = useState([]);
+  const [view, setView] = useState(false);
+
 
   // 입력 값이 변경될 때 호출되는 함수
   const handleInputChange = (e) => {
@@ -65,7 +67,7 @@ useEffect(()=>{
       </div> */}
 
       {/* 주고받는 내용 */}
-      <div className='place-items-center h-[550px] overflow-y-scroll pl-[200px] '>
+      <div className='place-items-center h-[490px] overflow-y-scroll pl-[200px] '>
       {variableDataArray.map((item, index) => (
           <VariableName
             key={index}
@@ -77,6 +79,23 @@ useEffect(()=>{
       </div>
 
       {/* input  */}
+      {/* dropdown */}
+      <div className='ml-[310px] text-center'>
+            <div className='w-[180px] h-[56px] bg-[#D9D9D9] rounded-[10px] relative'>
+              <ul onClick={() => {setView(!view)}}> 
+
+              <div className= 'p-[15px]'>
+                언어 선택 {view ? '▵' : '▿'} 
+              </div>
+
+              <div className='absolute top-[-380%]'>
+                {view && <InputDropDown />} 
+              </div>
+
+              </ul>
+            </div>
+          </div>
+
         <div className='flex ml-[310px] mt-[10px]'>
           <input className='border border-[#3B82F6] w-[716px] h-[54px] rounded-[10px]' 
           type="text" 
