@@ -4,7 +4,7 @@ import axios from 'axios';
 import VariableName from '../components/VariableName/VariableName';
 import InputDropDown from '../components/VariableName/InputDropDown';
 
-export function RecommandVariableName() {
+export default function RecommandVariableName() {
   const [inputValues, setInputValues] = useState(''); 
   const [variableData, setVariableData] = useState('')   
   const [inputString, setInputString] = useState('');
