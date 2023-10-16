@@ -2,8 +2,8 @@ import React, { useEffect } from 'react'
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
-import { setUserProfile } from '../../store/KakaoLogin/kakaoUserSlice';
-import { setCookie } from '../Cookie/Cookies';
+import { setUserProfile } from 'store/KakaoLogin/kakaoUserSlice';
+import { setCookie } from 'components/Cookie/Cookies';
 
 
 const KakaoRedirect = (props) => { 
