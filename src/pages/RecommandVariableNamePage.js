@@ -3,14 +3,16 @@ import { getCookie } from '../components/Cookie/Cookies';
 import axios from 'axios';
 import VariableName from '../components/VariableName/VariableName';
 import InputDropDown from '../components/VariableName/InputDropDown';
+import Dropdown from 'components/Dropdown';
 
 export default function RecommandVariableName() {
+  const languages = ['C', 'C#', 'C++', 'Dart', 'Go','Java','Javascript','typescript','kotlin']
+  const [selectedLanguage, setSelectedLanguage] = useState('');
   const [inputValues, setInputValues] = useState(''); 
   const [variableData, setVariableData] = useState('')   
   const [inputString, setInputString] = useState('');
   const [variableDataArray, setVariableDataArray] = useState([]);
   const [view, setView] = useState(false);
-
 
   // 입력 값이 변경될 때 호출되는 함수
   const handleInputChange = (e) => {
@@ -79,8 +81,14 @@ useEffect(()=>{
       </div>
 
       {/* input  */}
+      {/* jae seok 작업한 Dropdown */}
+      {/* list와 setSelected함수를 적용하면 해당 값을 가져올 수 있음  */}
+      <div className='ml-[310px]'>
+        <Dropdown list={languages} setSelectedLanguage={setSelectedLanguage}/>
+      </div>
       {/* dropdown */}
       <div className='ml-[310px] text-center'>
+        
             <div className='w-[180px] h-[56px] bg-[#D9D9D9] rounded-[10px] relative'>
               <ul onClick={() => {setView(!view)}}> 
 
