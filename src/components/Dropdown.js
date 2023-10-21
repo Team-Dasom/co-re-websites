@@ -1,21 +1,24 @@
-export default function Dropdown({list, setSelectedLanguage}) {
-
+export default function Dropdown({ title, list, register }) {
   return (
-    <div className="w-48">
+    <div className='w-48'>
       <label
-        htmlFor='languages'
+        htmlFor='title'
         className='block mb-2 text-sm font-medium text-gray-900 dark:text-white'
       >
-        언어를 선택하세요.
+        {title === 'language' ? '언어' : '컨텐츠'}를 선택하세요.
       </label>
       <select
-        id='languages'
-        onChange={(e) => setSelectedLanguage(e.target.value)}
+        id='title'
+        {...register(`${title}`)}
         className='bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-[#3B82F6] focus:border-[#3B82F6] block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-[#3B82F6] dark:focus:border-[#3B82F6]'
       >
-        <option value="">Choose Language</option>
-        {list.map((language, idx) => {
-          return (<option key={language+idx} value={language}>{language}</option>)
+        <option value=''>Choose {title}</option>
+        {list.map((item, idx) => {
+          return (
+            <option key={item + idx} value={item}>
+              {item}
+            </option>
+          );
         })}
       </select>
     </div>
