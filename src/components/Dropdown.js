@@ -6,7 +6,7 @@ export default function Dropdown({list, setSelectedLanguage}) {
         htmlFor='languages'
         className='block mb-2 text-sm font-medium text-gray-900 dark:text-white'
       >
-        Select an option
+        언어를 선택하세요.
       </label>
       <select
         id='languages'
