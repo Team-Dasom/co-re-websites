@@ -3,6 +3,7 @@ import { getCookie } from '../components/Cookie/Cookies';
 import axios from 'axios';
 import VariableName from '../components/VariableName/VariableName';
 import InputDropDown from '../components/VariableName/InputDropDown';
+import InputInPage from 'components/InputInPage';
 
 export default function RecommandVariableName() {
   const [inputValues, setInputValues] = useState(''); 
@@ -10,15 +11,15 @@ export default function RecommandVariableName() {
   const [inputString, setInputString] = useState('');
   const [variableDataArray, setVariableDataArray] = useState([]);
   const [view, setView] = useState(false);
+  const [placeholder] =useState('    추천을 원하는 "변수"명만 입력해 보세요...');
 
 
   // 입력 값이 변경될 때 호출되는 함수
   const handleInputChange = (e) => {
       setInputValues(e.target.value);
-  };
-
+      };
+  const input = inputValues
   const sendButton = async() => {
-    const input = inputValues
     setInputString(input) // inputString에 호출 string 저장
 
     const data = {
@@ -47,13 +48,13 @@ export default function RecommandVariableName() {
 const variableDatas = variableData // 응답 결과를 밖에서 사용해야되기 때문에 다시 variableDatas에 응답 결과 저장
 
 useEffect(()=>{
-  if ( variableDatas !== '' && inputString !== '') {
+  if ( inputString !== '') {
     setVariableDataArray([
       ...variableDataArray,
-      { inputString, variableData: variableDatas },
+      { inputString: inputString, variableData: variableDatas },
     ]);
   }
-},[variableData, inputString, variableDatas])
+},[variableDatas])
 
   return (
     <div>
@@ -70,7 +71,7 @@ useEffect(()=>{
       <div className='place-items-center h-[490px] overflow-y-scroll pl-[200px] '>
       {variableDataArray.map((item, index) => (
           <VariableName
-            key={index}
+            key={item.index}
             inputString={item.inputString}
             variableData={item.variableData}
           />
@@ -94,17 +95,8 @@ useEffect(()=>{
               </ul>
             </div>
           </div>
-
-        <div className='flex ml-[310px] mt-[10px]'>
-          <input className='border border-[#3B82F6] w-[716px] h-[54px] rounded-[10px]' 
-          type="text" 
-          placeholder='    추천을 원하는 "변수"명만 입력해 보세요...'
-          value={inputValues}
-          onChange={handleInputChange}/>
-          <button 
-          className='bg-[#3B82F6] text-white w-[124px] h-[54px] ml-[17px] rounded-[10px]'
-          onClick={sendButton}>Send</button>
-        </div>
+          
+        <InputInPage inputValues={inputValues} handleInputChange={handleInputChange} sendButton={sendButton} placeholder={placeholder}/>
     </div>
   )
 }
