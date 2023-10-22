@@ -1,12 +1,15 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { AiOutlineMenu } from 'react-icons/ai';
 import { BsPersonCircle } from 'react-icons/bs';
 import LoginModal from 'components/Login/LoginModal';
 import { useSelector } from 'react-redux';
 import { useRouter } from 'hooks/useRouter';
 import { headerContent } from 'router';
+import { useNavigate } from 'react-router-dom';
+import { getCookie } from 'components/Cookie/Cookies';
 
 export default function Header() {
+
   const [isOpenModal, setIsOpenModal] = useState(false);
   const profileImage = useSelector((state) => state.user.profileImage);
   const { routeTo, currentPath } = useRouter();
@@ -37,10 +40,10 @@ export default function Header() {
       <div
         className='flex items-center justify-end w-[10%] text-orange-700'
       >
-        {profileImage ? ( 
+        {getCookie('profileImage') ? ( 
                   <div>
                     <img className='flex items-center justify-center w-[45px] h-[45px] gap-2 mr-4 rounded-[50%] cursor-pointer h-3/5' 
-                      src={profileImage} 
+                      src={getCookie('profileImage')} 
                       onClick={()=>routeTo('/mypage')}
                       alt="프로필 이미지" />
                   </div>

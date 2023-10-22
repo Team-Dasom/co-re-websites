@@ -1,6 +1,7 @@
 import React from 'react'
 import logo from '../../images/logo-icon.png'
 import { useSelector } from 'react-redux';
+import { getCookie } from 'components/Cookie/Cookies';
 
 
 const VariableName = ({inputString, variableData}) => {
@@ -11,7 +12,7 @@ return (
         <div className='ml-[-200px]'>
         {/* 내가 요청한 변수 */}
             <div className='flex h-auto items-center p-[25px]'>
-                <img className='w-[64px] h-[64px] ml-[360px] rounded-[10px]' src={profileImage} alt="Img" />
+                <img className='w-[64px] h-[64px] ml-[360px] rounded-[10px]' src={getCookie('profileImage')} alt="Img" />
                 <div className='ml-[25px]'>{inputString}</div>
             </div>
 
