@@ -1,110 +1,130 @@
-import React, { useEffect, useState } from 'react';
-import { getCookie } from '../components/Cookie/Cookies';
+import React, { useEffect } from 'react';
 import axios from 'axios';
-import VariableName from '../components/VariableName/VariableName';
-import InputDropDown from '../components/VariableName/InputDropDown';
-import InputInPage from 'components/InputInPage';
 import Dropdown from 'components/Dropdown';
+import { useForm } from 'react-hook-form';
+import ScrollToBottom from 'react-scroll-to-bottom';
+import { useDispatch, useSelector } from 'react-redux';
+import { addAnswer, addQuestion } from 'store/variebleName/variebleNameSlice';
+import Answer from 'components/conversation/Answer';
 
 export default function RecommandVariableName() {
-  const languages = ['C', 'C#', 'C++', 'Dart', 'Go','Java','Javascript','typescript','kotlin']
-  const [selectedLanguage, setSelectedLanguage] = useState('');
-  const [inputValues, setInputValues] = useState(''); 
-  const [variableData, setVariableData] = useState('')   
-  const [inputString, setInputString] = useState('');
-  const [variableDataArray, setVariableDataArray] = useState([]);
-  const [view, setView] = useState(false);
-  const [placeholder] =useState('    추천을 원하는 "변수"명만 입력해 보세요...');
+  const { register, handleSubmit, reset, getValues } = useForm();
+  const conversation = useSelector(
+    (state) => state.variebleName.conversation,
+  );
+  const dispatch = useDispatch();
+  const languageList = [
+    'C',
+    'C#',
+    'C++',
+    'Dart',
+    'Go',
+    'Java',
+    'Javascript',
+    'typescript',
+    'kotlin',
+  ];
 
-  // 입력 값이 변경될 때 호출되는 함수
-  const handleInputChange = (e) => {
-      setInputValues(e.target.value);
-      };
-  const input = inputValues
-  const sendButton = async() => {
-    setInputString(input) // inputString에 호출 string 저장
+  const textAreaAutosize = (e) => {
+    const element = e.target;
+    element.style.height = 'auto';
+    const maxHeight = 280;
 
-    const data = {
-      "function": "RECOMMEND_VARIABLE_NAME",
-      "content": `${inputValues}`,
-      "language": "자바스크립트"
+    if (element.scrollHeight <= maxHeight) {
+      element.style.height = `${element.scrollHeight}px`;
+    } else {
+      element.style.height = `${maxHeight}px`;
+    }
   };
-  try {
-      const response = await axios.post(
-      `${process.env.REACT_APP_CORE_KAKAO_API_IP_KEY}/api/v1/gpt/recommendVariableName`,
-      data,
-      {
-          headers: {
-          Authorization: `Bearer ${getCookie('loginToken')}`,
-          },
-        },
-      );
-    // 서버로부터의 응답을 처리
-      console.log('서버 응답:', response.data.data.content);
-      setVariableData(response.data.data.content) // variableData에 응답 결과 저장
-  } catch (error) {
-    // 에러를 처리
-      console.error('에러:', error);
-  }
-}
-const variableDatas = variableData // 응답 결과를 밖에서 사용해야되기 때문에 다시 variableDatas에 응답 결과 저장
 
-useEffect(()=>{
-  if ( inputString !== '') {
-    setVariableDataArray([
-      ...variableDataArray,
-      { inputString: inputString, variableData: variableDatas },
-    ]);
-  }
-},[variableDatas])
+  const handleKeyPress = async (e) => {
+    if (e.key === 'Enter' && e.nativeEvent.isComposing === false) {
+      if (!e.shiftKey) {
+        e.preventDefault();
+        dispatch(addAnswer(getValues().content));
+        reset();
+        const res = await axios.post(`${process.env.REACT_APP_BASE_URL}/api/v1/gpt/recommendVariableName`, {
+          function: "RECOMMEND_VARIABLE_NAME",
+          ...getValues()
+        });
+
+        console.log(res);
+
+        e.target.style.height = 'auto';
+      }
+    }
+  };
+
+  const onSubmit = async (data) => {
+    dispatch(addAnswer(data.content));
+    reset();
+    const res = await axios.post(`${process.env.REACT_APP_BASE_URL}/api/v1/gpt/recommendVariableName`, {
+      function: "RECOMMEND_VARIABLE_NAME",
+      ...data
+    });
+
+    dispatch(addQuestion(res.data.data.content));
+  };
+
+  useEffect(() => {}, [conversation])
+
+//     const data = {
+//       "function": "RECOMMEND_VARIABLE_NAME",
+//       "content": `${inputValues}`,
+//       "language": "java"
+//   };
+//   try {
+//       const response = await axios.post(
+//       `${process.env.REACT_APP_BASE_URL}/api/v1/gpt/recommendVariableName`,
+//       data,
+//       {
+//           headers: {
+//           Authorization: `Bearer ${getCookie('loginToken')}`,
+//           },
+//         },
+//       );
+//     // 서버로부터의 응답을 처리
+//       console.log('서버 응답:', response.data.data.content);
+//       setVariableData(response.data.data.content) // variableData에 응답 결과 저장
+//   } catch (error) {
+//     // 에러를 처리
+//       console.error('에러:', error);
+//   }
+// }
+
 
   return (
-    <div>
-      {/* 지피티 바로가기 폴더 */}
-      {/* <div className='bg-[#263348] w-[308px] h-[650px] absolute '>
-        <div className='flex w-[272px] h-[52px] ml-[19px] mt-[19px] bg-[#4D5562] rounded-[10px] relative cursor-pointer'
-        onClick={()=>window.open('https://chat.openai.com/')}>
-          <img className='w-[40px] h-[40px] ml-[14px] mt-[6px]' src={gptImg} alt="지피티 바로가기" />
-          <div className='w-[208px] h-[33px] font-bold text-white text-2xl mt-[10px] ml-[9px]'>ChatGPT 바로가기</div>
+      <ScrollToBottom className='w-full h-[calc(100vh-4rem)] align-center overflow-y-scroll'>
+        {conversation.map((item) => {
+          return <Answer key={item.id} data={item} isAnswer={item.isAnswer} />;
+        })}
+      <div className='fixed bottom-0 w-2/3 -translate-x-1/2 left-1/2'>
+        <div className='flex flex-col justify-center'>
+          <form className='w-full' onSubmit={handleSubmit(onSubmit)}>
+            <Dropdown
+              list={languageList}
+              title={'language'}
+              register={register}
+            />
+            <textarea
+              rows={1}
+              className='align-bottom resize-none focus:outline-none mt-2 border-[#3B82F6] border-solid border-[1px] p-2 w-[calc(100%-7.75rem)] h-12 rounded-md'
+              placeholder='추천을 원하는 "변수"명만 입력해 보세요.'
+              onKeyDown={handleKeyPress}
+              {...register('content', {
+                onChange: textAreaAutosize,
+              })}
+            />
+            <input
+              className='bg-[#3B82F6] text-white w-28 h-12 rounded-lg cursor-pointer ml-3'
+              type='submit'
+              value='submit'
+            />
+          </form>
+          <div className='w-full h-12 bg-white '></div>
         </div>
-      </div> */}
-
-      {/* 주고받는 내용 */}
-      <div className='place-items-center h-[490px] overflow-y-scroll pl-[200px] '>
-      {variableDataArray.map((item, index) => (
-          <VariableName
-            key={item.index}
-            inputString={item.inputString}
-            variableData={item.variableData}
-          />
-        ))
-        }
       </div>
-
-      {/* input  */}
-      {/* jae seok 작업한 Dropdown */}
-      {/* list와 setSelected함수를 적용하면 해당 값을 가져올 수 있음  */}
-      <div className='ml-[310px]'>
-        <Dropdown list={languages} setSelectedLanguage={setSelectedLanguage}/>
-      </div>
-      {/* dropdown */}
-      <div className='ml-[310px] text-center'>
-        
-            <div className='w-[180px] h-[56px] bg-[#D9D9D9] rounded-[10px] relative'>
-              <ul onClick={() => {setView(!view)}}> 
-
-              <div className= 'p-[15px]'>
-                언어 선택 {view ? '▵' : '▿'} 
-              </div>
-
-              <div className='absolute top-[-380%]'>
-                {view && <InputDropDown />} 
-              </div>
-              </ul>
-            </div>
-          </div>
-          
-        <InputInPage inputValues={inputValues} handleInputChange={handleInputChange} sendButton={sendButton} placeholder={placeholder}/>
-    </div>
+      <div className='flex-shrink-0 h-36 md:h-48'></div>
+    </ScrollToBottom>
   )
 }
