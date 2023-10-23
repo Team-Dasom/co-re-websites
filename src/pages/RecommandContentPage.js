@@ -2,6 +2,12 @@ import InputInPage from 'components/InputInPage';
 import React, { useState } from 'react';
 
 export default function RecommandContent() {
+  const languageList = [
+    "강의",
+    "유튜브",
+    "책",
+    "블로그",
+  ];
   const [inputValues, setInputValues] = useState(''); 
   const [inputString, setInputString] = useState('');
 
