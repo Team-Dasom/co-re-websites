@@ -32,14 +32,14 @@ export default function ChangeCodeLanguage() {
       if (!e.shiftKey) {
         e.preventDefault();
         const values = getValues();
-        dispatch(addAnswer(values.content));
+        dispatch(addQuestion(values.content));
         reset();
         const res = await axios.post(`${process.env.REACT_APP_BASE_URL}/api/v1/gpt/changeLanguage`, {
           function: "CHANGE_LANGUAGE",
           ...values
         });
 
-        dispatch(addQuestion(res.data.data.content))
+        dispatch(addAnswer(res.data.data.content))
 
         e.target.style.height = 'auto';
       }
@@ -47,14 +47,14 @@ export default function ChangeCodeLanguage() {
   };
 
   const onSubmit = async (data) => {
-    dispatch(addAnswer(data.content));
+    dispatch(addQuestion(data.content));
     reset();
     const res = await axios.post(`${process.env.REACT_APP_BASE_URL}/api/v1/gpt/changeLanguage`, {
       function: "CHANGE_LANGUAGE",
       ...data
     });
 
-    dispatch(addQuestion(res.data.data.content));
+    dispatch(addAnswer(res.data.data.content));
   };
 
   useEffect(() => {}, [conversation])
