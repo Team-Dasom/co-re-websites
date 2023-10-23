@@ -3,22 +3,12 @@ import Dropdown from 'components/Dropdown';
 import { useForm } from 'react-hook-form';
 import { useDispatch, useSelector } from 'react-redux';
 import { addAnswer, addQuestion } from 'store/changeLanguage/changeLanguageSlice';
-import Answer from 'components/conversation/Answer';
+import Answer from 'components/conversation/Conversation';
 import ScrollToBottom from 'react-scroll-to-bottom';
 import axios from 'axios';
 
 export default function ChangeCodeLanguage() {
-  const languageList = [
-    'C',
-    'C#',
-    'C++',
-    'Dart',
-    'Go',
-    'Java',
-    'Javascript',
-    'typescript',
-    'kotlin',
-  ];
+  const languageList = ['C', 'C#', 'C++', 'Dart', 'Go', 'Java', 'Javascript', 'typescript', 'kotlin'];
   const { register, handleSubmit, reset, getValues } = useForm();
   const conversation = useSelector(
     (state) => state.changeLanguage.conversation,
