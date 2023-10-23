@@ -3,22 +3,12 @@ import Dropdown from 'components/Dropdown';
 import { useForm } from 'react-hook-form';
 import { useDispatch, useSelector } from 'react-redux';
 import { addAnswer, addQuestion } from 'store/changeLanguage/changeLanguageSlice';
-import Answer from 'components/conversation/Answer';
+import Answer from 'components/conversation/Conversation';
 import ScrollToBottom from 'react-scroll-to-bottom';
 import axios from 'axios';
 
 export default function ChangeCodeLanguage() {
-  const languageList = [
-    'C',
-    'C#',
-    'C++',
-    'Dart',
-    'Go',
-    'Java',
-    'Javascript',
-    'typescript',
-    'kotlin',
-  ];
+  const languageList = ['C', 'C#', 'C++', 'Dart', 'Go', 'Java', 'Javascript', 'typescript', 'kotlin'];
   const { register, handleSubmit, reset, getValues } = useForm();
   const conversation = useSelector(
     (state) => state.changeLanguage.conversation,
@@ -41,14 +31,15 @@ export default function ChangeCodeLanguage() {
     if (e.key === 'Enter' && e.nativeEvent.isComposing === false) {
       if (!e.shiftKey) {
         e.preventDefault();
-        dispatch(addAnswer(getValues().content));
+        const values = getValues();
+        dispatch(addQuestion(values.content));
         reset();
         const res = await axios.post(`${process.env.REACT_APP_BASE_URL}/api/v1/gpt/changeLanguage`, {
           function: "CHANGE_LANGUAGE",
-          ...getValues()
+          ...values
         });
 
-        console.log(res);
+        dispatch(addAnswer(res.data.data.content))
 
         e.target.style.height = 'auto';
       }
@@ -56,14 +47,14 @@ export default function ChangeCodeLanguage() {
   };
 
   const onSubmit = async (data) => {
-    dispatch(addAnswer(data.content));
+    dispatch(addQuestion(data.content));
     reset();
     const res = await axios.post(`${process.env.REACT_APP_BASE_URL}/api/v1/gpt/changeLanguage`, {
       function: "CHANGE_LANGUAGE",
       ...data
     });
 
-    dispatch(addQuestion(res.data.data.content));
+    dispatch(addAnswer(res.data.data.content));
   };
 
   useEffect(() => {}, [conversation])
