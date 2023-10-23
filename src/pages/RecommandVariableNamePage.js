@@ -5,7 +5,7 @@ import { useForm } from 'react-hook-form';
 import ScrollToBottom from 'react-scroll-to-bottom';
 import { useDispatch, useSelector } from 'react-redux';
 import { addAnswer, addQuestion } from 'store/variebleName/variebleNameSlice';
-import Answer from 'components/conversation/Answer';
+import Answer from 'components/conversation/Conversation';
 
 export default function RecommandVariableName() {
   const { register, handleSubmit, reset, getValues } = useForm();
@@ -13,17 +13,8 @@ export default function RecommandVariableName() {
     (state) => state.variebleName.conversation,
   );
   const dispatch = useDispatch();
-  const languageList = [
-    'C',
-    'C#',
-    'C++',
-    'Dart',
-    'Go',
-    'Java',
-    'Javascript',
-    'typescript',
-    'kotlin',
-  ];
+  const languageList = ['C', 'C#', 'C++', 'Dart', 'Go', 'Java', 'Javascript', 'typescript', 'kotlin'];
+
 
   const textAreaAutosize = (e) => {
     const element = e.target;
@@ -41,14 +32,15 @@ export default function RecommandVariableName() {
     if (e.key === 'Enter' && e.nativeEvent.isComposing === false) {
       if (!e.shiftKey) {
         e.preventDefault();
-        dispatch(addAnswer(getValues().content));
+        const values = getValues();
+        dispatch(addQuestion(values.content));        
         reset();
         const res = await axios.post(`${process.env.REACT_APP_BASE_URL}/api/v1/gpt/recommendVariableName`, {
           function: "RECOMMEND_VARIABLE_NAME",
-          ...getValues()
+          ...values
         });
 
-        console.log(res);
+        dispatch(addAnswer(res.data.data.content))
 
         e.target.style.height = 'auto';
       }
@@ -56,14 +48,14 @@ export default function RecommandVariableName() {
   };
 
   const onSubmit = async (data) => {
-    dispatch(addAnswer(data.content));
+    dispatch(addQuestion(data.content));
     reset();
     const res = await axios.post(`${process.env.REACT_APP_BASE_URL}/api/v1/gpt/recommendVariableName`, {
       function: "RECOMMEND_VARIABLE_NAME",
       ...data
     });
 
-    dispatch(addQuestion(res.data.data.content));
+    dispatch(addAnswer(res.data.data.content));
   };
 
   useEffect(() => {}, [conversation])
