@@ -1,4 +1,4 @@
-export default function Answer({ data }) {
+export default function Conversation({ data }) {
   const { text, isAnswer } = data;
   return (
     <div className={`p-4 justify-center text-base md:gap-6 md:py-6 m-auto border-b border-solid bg-[${isAnswer ? '#fff' : '#EDEDED' }] border-[#B5B2B2]`}>

@@ -41,14 +41,15 @@ export default function ChangeCodeLanguage() {
     if (e.key === 'Enter' && e.nativeEvent.isComposing === false) {
       if (!e.shiftKey) {
         e.preventDefault();
-        dispatch(addAnswer(getValues().content));
+        const values = getValues();
+        dispatch(addAnswer(values.content));
         reset();
         const res = await axios.post(`${process.env.REACT_APP_BASE_URL}/api/v1/gpt/changeLanguage`, {
           function: "CHANGE_LANGUAGE",
-          ...getValues()
+          ...values
         });
 
-        console.log(res);
+        dispatch(addQuestion(res.data.data.content))
 
         e.target.style.height = 'auto';
       }
