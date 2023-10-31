@@ -7,7 +7,7 @@ import Answer from 'components/conversation/Conversation';
 import ScrollToBottom from 'react-scroll-to-bottom';
 import axios from 'axios';
 
-export default function ChangeCodeLanguage() {
+export default function SolveAlgorithm() {
   const languageList = ['C', 'C#', 'C++', 'Dart', 'Go', 'Java', 'Javascript', 'typescript', 'kotlin'];
   const { register, handleSubmit, reset, getValues } = useForm();
   const conversation = useSelector(

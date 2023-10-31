@@ -2,13 +2,13 @@
 import MyPage from 'pages/MyPage';
 import Main from 'pages/MainPage';
 import RecommandVariableName  from 'pages/RecommandVariableNamePage';
-import ChangeCodeLanguage from 'pages/ChangeCodeLanguagePage';
 import RefactorCode from 'pages/RefactorCodePage';
 import AddComment from 'pages/AddCommentPage';
 import RecommandContent from 'pages/RecommandContentPage';
 import KakaoRedirect from 'components/Login/KakaoRedirect';
 import { createBrowserRouter } from 'react-router-dom';
 import Header from 'components/Header/Header';
+import SolveAlgorithm from 'pages/SolveAlgorithmPage';
 
 
 const routerData = [
@@ -28,10 +28,10 @@ const routerData = [
   },
   {
     id: 2,
-    path: '/change-language',
-    element: <ChangeCodeLanguage />,
+    path: '/solve-algorithm',
+    element: <SolveAlgorithm />,
     withAuth: false,
-    label: 'Code 언어 변경',
+    label: '알고리즘 문제 해설[BETA]',
     isMenu: true,
   },
   {
