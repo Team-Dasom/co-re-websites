@@ -4,6 +4,7 @@ import tokenReducer from 'store/KakaoLogin/tokenSlice';
 import statusReducer from './KakaoLogin/statusSlice';
 import changeLanguageSlice from 'store/changeLanguage/changeLanguageSlice';
 import variebleNameSlice from 'store/variebleName/variebleNameSlice';
+import addCommentSlice from './addComment/addCommentSlice';
 
 const store =  configureStore({
   reducer: {
@@ -11,7 +12,8 @@ const store =  configureStore({
     token: tokenReducer,
     status: statusReducer,
     changeLanguage: changeLanguageSlice,
-    variebleName: variebleNameSlice
+    variebleName: variebleNameSlice,
+    addComment: addCommentSlice
   },
 });
 
