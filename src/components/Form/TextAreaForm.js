@@ -1,6 +1,4 @@
 import axios from 'axios';
-import Dropdown from 'components/Dropdown';
-import { useEffect } from 'react';
 import { useForm } from 'react-hook-form';
 import { useDispatch } from 'react-redux';
 import ReactTextareaAutosize from 'react-textarea-autosize';
@@ -17,14 +15,14 @@ const camelCaseToSnakeCase = (str) => {
 };
 
 export default function TextAreaForm({ camelCaseAPI, placeholder, addQuestion, addAnswer, dropdownList }) {
-  const { register, handleSubmit, reset, getValues, setFocus } = useForm();
+  const { register, handleSubmit, reset, getValues } = useForm();
   const dispatch = useDispatch();
 
   const onSubmit = async (data) => {
     const inputData = data;
     dispatch(addQuestion(inputData.content));
     reset();
-    
+
     try {
       const res = await axios.post(`${process.env.REACT_APP_BASE_URL}/api/v1/gpt/${camelCaseAPI}`, {
         function: camelCaseToSnakeCase(camelCaseAPI),
@@ -50,7 +48,7 @@ export default function TextAreaForm({ camelCaseAPI, placeholder, addQuestion, a
         reset();
         dispatch(addQuestion(values.content));
         e.target.rows = 1;
-        
+
         try {
           const res = await axios.post(`${process.env.REACT_APP_BASE_URL}/api/v1/gpt/${camelCaseAPI}`, {
             function: camelCaseToSnakeCase(camelCaseAPI),
@@ -70,16 +68,30 @@ export default function TextAreaForm({ camelCaseAPI, placeholder, addQuestion, a
     }
   };
 
-  useEffect(() => {
-    setFocus('content');
-  }, [setFocus]);
-
   return (
     <>
       <div className='bottom-[-1.25rem] fixed w-[100vw] h-[23vh] bg-white blur-xl'></div>
       <div className='fixed bottom-0 w-2/3 -translate-x-1/2 left-1/2'>
         <form className='w-full' onSubmit={handleSubmit(onSubmit)}>
-          <Dropdown list={dropdownList} title={'language'} register={register} />
+          <div className='w-48'>
+            <label htmlFor='title' className='block mb-2 text-sm font-medium text-gray-900 dark:text-white'>
+              언어를 선택하세요.
+            </label>
+            <select
+              id='title'
+              {...register('language')}
+              className='bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-[#3B82F6] focus:border-[#3B82F6] block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-[#3B82F6] dark:focus:border-[#3B82F6]'
+            >
+              <option value=''>Choose Language</option>
+              {dropdownList.map((item, idx) => {
+                return (
+                  <option key={item + idx} value={item}>
+                    {item}
+                  </option>
+                );
+              })}
+            </select>
+          </div>
           <ReactTextareaAutosize
             minRows={1}
             maxRows={6}
@@ -87,7 +99,7 @@ export default function TextAreaForm({ camelCaseAPI, placeholder, addQuestion, a
             placeholder={placeholder}
             onKeyDown={handleKeyPress}
             {...register('content', {
-              required: true,
+              required: true
             })}
           />
           <input className='bg-[#3B82F6] hover:bg-[#9bbffa] text-white w-28 h-[42px] rounded-lg cursor-pointer ml-3' type='submit' value='submit' />
