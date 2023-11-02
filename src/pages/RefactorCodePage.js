@@ -32,14 +32,27 @@ export default function RefactorCode() {
         const values = getValues();
         dispatch(addQuestion(values.content));
         reset();
-        const res = await axios.post(`${process.env.REACT_APP_BASE_URL}/api/v1/gpt/refactorCode`, {
-          function: 'REFACTOR_CODE',
-          ...values,
-        });
 
-        dispatch(addAnswer(res.data.data.content));
+        try {
+          const res = await axios.post(`${process.env.REACT_APP_BASE_URL}/api/v1/gpt/refactorCode`, {
+            function: 'REFACTOR_CODE',
+            ...values,
+          });
 
-        e.target.style.height = 'auto';
+          dispatch(addAnswer(res.data.data.content));
+
+          e.target.style.height = '46px';
+        } catch (error) {
+          if (error.response && error.response.status === 400) {
+            console.log(error.toJSON());
+            alert('언어를 선택해 주세요 !');
+            setTimeout(() => {
+              e.target.style.height = '46px';
+            }, 0);  
+          } else {
+            console.error('Error:', error);
+          }
+        }
       }
     }
   };
@@ -47,12 +60,25 @@ export default function RefactorCode() {
   const onSubmit = async (data) => {
     dispatch(addQuestion(data.content));
     reset();
-    const res = await axios.post(`${process.env.REACT_APP_BASE_URL}/api/v1/gpt/refactorCode`, {
-      function: 'REFACTOR_CODE',
-      ...data,
-    });
 
-    dispatch(addAnswer(res.data.data.content));
+    try {
+      const res = await axios.post(`${process.env.REACT_APP_BASE_URL}/api/v1/gpt/refactorCode`, {
+        function: 'REFACTOR_CODE',
+        ...data,
+      });
+
+      dispatch(addAnswer(res.data.data.content));
+    } catch (error) {
+      if (error.response && error.response.status === 400) {
+        console.log(error.toJSON());
+        alert('언어를 선택해 주세요 !');
+        setTimeout(() => {
+          document.getElementById('commentTextArea').style.height = '46px';     
+        }, 0); 
+      } else {
+        console.error('Error:', error);
+      }
+    }
   };
 
   useEffect(() => {}, [conversation]);
@@ -68,6 +94,7 @@ export default function RefactorCode() {
           <form className='w-full' onSubmit={handleSubmit(onSubmit)}>
             <Dropdown list={languageList} title={'language'} register={register} />
             <textarea
+              id='commentTextArea'
               rows={1}
               className='align-bottom resize-none focus:outline-none mt-2 border-[#3B82F6] border-solid border-[1px] p-2 w-[calc(100%-7.75rem)] h-12 rounded-md'
               placeholder='언어를 변경할 코드를 입력하세요.'
