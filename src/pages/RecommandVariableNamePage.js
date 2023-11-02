@@ -1,5 +1,4 @@
-import React, { useEffect } from 'react';
-import ScrollToBottom from 'react-scroll-to-bottom';
+import React, { useCallback, useEffect, useRef } from 'react';
 import { useSelector } from 'react-redux';
 import { addAnswer, addQuestion } from 'store/variebleName/variebleNameSlice';
 import Answer from 'components/conversation/Conversation';
@@ -10,11 +9,18 @@ export default function RecommandVariableName() {
     (state) => state.variebleName.conversation,
   );
   const languageList = ['C', 'C#', 'C++', 'Dart', 'Go', 'Java', 'Javascript', 'typescript', 'kotlin'];
+  const chatBoxRef = useRef();
 
-  useEffect(() => {}, [conversation])
+  const scrollToBottom  = useCallback(() => {
+    chatBoxRef.current.scrollIntoView({behavior: 'smooth', block: 'end', inline: 'nearest'})
+  }, [conversation])
+
+  useEffect(() => {
+    scrollToBottom();
+  }, [conversation]);
 
   return (
-      <ScrollToBottom className='w-full h-[calc(100vh-4rem)] align-center overflow-y-scroll'>
+      <div ref={chatBoxRef}>
         {conversation.map((item) => {
           return <Answer key={item.id} data={item} isAnswer={item.isAnswer} />;
         })}
@@ -25,6 +31,6 @@ export default function RecommandVariableName() {
           addAnswer={addAnswer}
           dropdownList={languageList}/>
         <div className='flex-shrink-0 h-36 md:h-48'></div>
-    </ScrollToBottom>
+    </div>
   )
 }

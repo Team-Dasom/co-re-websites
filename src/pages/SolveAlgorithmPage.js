@@ -1,20 +1,24 @@
-import React, { useEffect } from 'react';
+import React, { useCallback, useEffect, useRef } from 'react';
 import { useSelector } from 'react-redux';
 import { addAnswer, addQuestion } from 'store/changeLanguage/changeLanguageSlice';
 import Answer from 'components/conversation/Conversation';
-import ScrollToBottom from 'react-scroll-to-bottom';
 import AlgorithmForm from 'components/Form/AlgorithmForm';
 
 export default function SolveAlgorithm() {
   const languageList = ['Python3', 'C', 'Java', 'Ruby', 'Javascript', 'Kotlin', 'Swift', 'C#', 'Node.js', 'Go', 'D', 'Rust', 'C++'];
   const conversation = useSelector((state) => state.changeLanguage.conversation);
-  
+  const chatBoxRef = useRef();
 
-  
-  useEffect(() => {}, [conversation]);
+  const scrollToBottom  = useCallback(() => {
+    chatBoxRef.current.scrollIntoView({behavior: 'smooth', block: 'end', inline: 'nearest'})
+  }, [conversation])
+
+  useEffect(() => {
+    scrollToBottom();
+  }, [conversation]);
 
   return (
-    <ScrollToBottom className='w-full min-h-[calc(100vh-4rem)] align-center overflow-scroll'>
+    <div ref={chatBoxRef}>
       {conversation.map((item) => {
         return <Answer key={item.id} data={item} isAnswer={item.isAnswer} />;
       })}
@@ -25,6 +29,6 @@ export default function SolveAlgorithm() {
         addAnswer={addAnswer}
         dropdownList={languageList} />
       <div className='flex-shrink-0 h-36 md:h-48'></div>
-    </ScrollToBottom>
+    </div>
   );
 }
