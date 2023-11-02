@@ -12,7 +12,7 @@ export default function RefactorCode() {
   useEffect(() => {}, [conversation]);
 
   return (
-    <ScrollToBottom className='w-full min-h-[calc(100vh-4rem)] align-center overflow-scroll'>
+    <ScrollToBottom className='w-full h-[100vh] align-center'>
       {conversation.map((item) => {
         return <Conversation key={item.id} data={item} isAnswer={item.isAnswer} />;
       })}
