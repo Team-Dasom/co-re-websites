@@ -5,8 +5,8 @@ module.exports = {
     extend: {
       keyframes: {
         fadeIn: {
-          '0%': { opacity: '0', transform: 'translate3d(0, 100%, 0)' },
-          'to': { opacity: '1', transform: 'translatez(0)' }
+          '0%': { opacity: '0', transform: 'translateY(10px)' },
+          '100%': { opacity: '1', transform: 'none' }
         }
       },
       animation: {
