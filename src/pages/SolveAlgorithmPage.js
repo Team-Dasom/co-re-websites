@@ -94,7 +94,7 @@ export default function SolveAlgorithm() {
               </div>
             </div>
             <input
-              className='align-bottom resize-none focus:outline-none mt-2 border-[#3B82F6] border-solid border-[1px] p-2 w-[calc(100%-7.75rem)] h-12 rounded-md'
+              className='align-bottom resize-none focus:outline-none mt-2 border-[#3B82F6] border-solid border-[1px] p-2 w-[calc(100%-7.75rem)] h-[42px] rounded-md'
               placeholder='해결할 문제 번호를 입력하세요.'
               onKeyDown={(e) => {
                 if (e.key.length === 1 && !/\d/.test(e.key)) { // 사용자가 키를 눌렀을 때 해당 키가 숫자가 아닌 경우에만 alert를 표시하고 입력을 무효화 시킼.
@@ -108,7 +108,7 @@ export default function SolveAlgorithm() {
                 setValueAs: (value) => value + '번',
               })}
             />
-            <input className='bg-[#3B82F6] hover:bg-[#9bbffa] text-white w-28 h-12 rounded-lg cursor-pointer ml-3' type='submit' value='submit' />
+            <input className='bg-[#3B82F6] hover:bg-[#9bbffa] text-white w-28 h-[42px] rounded-lg cursor-pointer ml-3' type='submit' value='submit' />
           </form>
           <div className='w-full h-3 bg-white '></div>
         </div>
