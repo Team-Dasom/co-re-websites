@@ -4,7 +4,6 @@ import Main from 'pages/MainPage';
 import RecommandVariableName  from 'pages/RecommandVariableNamePage';
 import RefactorCode from 'pages/RefactorCodePage';
 import AddComment from 'pages/AddCommentPage';
-import RecommandContent from 'pages/RecommandContentPage';
 import KakaoRedirect from 'components/Login/KakaoRedirect';
 import { createBrowserRouter } from 'react-router-dom';
 import Header from 'components/Header/Header';
@@ -52,20 +51,12 @@ const routerData = [
   },
   {
     id: 5,
-    path: '/recommand-content',
-    element: <RecommandContent />,
-    label: '컨텐츠 추천',
-    withAuth: false,
-    isMenu: true,
-  },
-  {
-    id: 6,
     path: '/kakao/user',
     element: <KakaoRedirect />,
     withAuth: false
   },
   {
-    id: 7,
+    id: 6,
     path: '/mypage',
     element: <MyPage />,
     withAuth: true
