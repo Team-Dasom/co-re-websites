@@ -83,14 +83,14 @@ export default function TextAreaForm({ camelCaseAPI, placeholder, addQuestion, a
           <ReactTextareaAutosize
             minRows={1}
             maxRows={6}
-            className='align-bottom resize-none focus:outline-none mt-2 border-[#3B82F6] border-solid border-[1px] h-[46px] p-2 w-[calc(100%-7.75rem)] rounded-md'
+            className='align-bottom resize-none focus:outline-none mt-2 border-[#3B82F6] border-solid border-[1px] p-2 w-[calc(100%-7.75rem)] rounded-md'
             placeholder={placeholder}
             onKeyDown={handleKeyPress}
             {...register('content', {
               required: true,
             })}
           />
-          <input className='bg-[#3B82F6] hover:bg-[#9bbffa] text-white w-28 h-12 rounded-lg cursor-pointer ml-3' type='submit' value='submit' />
+          <input className='bg-[#3B82F6] hover:bg-[#9bbffa] text-white w-28 h-[42px] rounded-lg cursor-pointer ml-3' type='submit' value='submit' />
         </form>
         <div className='w-full h-3 bg-white '></div>
       </div>
