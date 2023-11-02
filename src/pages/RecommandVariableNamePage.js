@@ -33,16 +33,29 @@ export default function RecommandVariableName() {
       if (!e.shiftKey) {
         e.preventDefault();
         const values = getValues();
-        dispatch(addQuestion(values.content));        
+        dispatch(addQuestion(values.content));
         reset();
-        const res = await axios.post(`${process.env.REACT_APP_BASE_URL}/api/v1/gpt/recommendVariableName`, {
-          function: "RECOMMEND_VARIABLE_NAME",
-          ...values
-        });
 
-        dispatch(addAnswer(res.data.data.content))
+        try {
+          const res = await axios.post(`${process.env.REACT_APP_BASE_URL}/api/v1/gpt/recommendVariableName`, {
+            function: 'RECOMMEND_VARIABLE_NAME',
+            ...values,
+          });
 
-        e.target.style.height = 'auto';
+          dispatch(addAnswer(res.data.data.content));
+
+          e.target.style.height = '46px';
+        } catch (error) {
+          if (error.response && error.response.status === 400) {
+            console.log(error.toJSON());
+            alert('언어를 선택해 주세요 !');
+            setTimeout(() => {
+              e.target.style.height = '46px';
+            }, 0);          
+          } else {
+            console.error('Error:', error);
+          }
+        }
       }
     }
   };
@@ -50,40 +63,28 @@ export default function RecommandVariableName() {
   const onSubmit = async (data) => {
     dispatch(addQuestion(data.content));
     reset();
-    const res = await axios.post(`${process.env.REACT_APP_BASE_URL}/api/v1/gpt/recommendVariableName`, {
-      function: "RECOMMEND_VARIABLE_NAME",
-      ...data
-    });
 
-    dispatch(addAnswer(res.data.data.content));
+    try {
+      const res = await axios.post(`${process.env.REACT_APP_BASE_URL}/api/v1/gpt/recommendVariableName`, {
+        function: 'RECOMMEND_VARIABLE_NAME',
+        ...data,
+      });
+
+      dispatch(addAnswer(res.data.data.content));
+    } catch (error) {
+      if (error.response && error.response.status === 400) {
+        console.log(error.toJSON());
+        alert('언어를 선택해 주세요 !');
+        setTimeout(() => {
+          document.getElementById('commentTextArea').style.height = '46px';     
+        }, 0);       
+      } else {
+        console.error('Error:', error);
+      }
+    }
   };
 
   useEffect(() => {}, [conversation])
-
-//     const data = {
-//       "function": "RECOMMEND_VARIABLE_NAME",
-//       "content": `${inputValues}`,
-//       "language": "java"
-//   };
-//   try {
-//       const response = await axios.post(
-//       `${process.env.REACT_APP_BASE_URL}/api/v1/gpt/recommendVariableName`,
-//       data,
-//       {
-//           headers: {
-//           Authorization: `Bearer ${getCookie('loginToken')}`,
-//           },
-//         },
-//       );
-//     // 서버로부터의 응답을 처리
-//       console.log('서버 응답:', response.data.data.content);
-//       setVariableData(response.data.data.content) // variableData에 응답 결과 저장
-//   } catch (error) {
-//     // 에러를 처리
-//       console.error('에러:', error);
-//   }
-// }
-
 
   return (
       <ScrollToBottom className='w-full h-[calc(100vh-4rem)] align-center overflow-y-scroll'>
@@ -99,6 +100,7 @@ export default function RecommandVariableName() {
               register={register}
             />
             <textarea
+            id='commentTextArea'
               rows={1}
               className='align-bottom resize-none focus:outline-none mt-2 border-[#3B82F6] border-solid border-[1px] p-2 w-[calc(100%-7.75rem)] h-12 rounded-md'
               placeholder='추천을 원하는 "변수"명만 입력해 보세요.'

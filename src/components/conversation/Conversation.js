@@ -1,9 +1,10 @@
 import { getCookie } from "components/Cookie/Cookies";
 import gptImg from '../../images/gptImg.svg'
+import defaultProfileImage from '../../images/defaultProfileImage.jpg'
 
 export default function Conversation({ data }) {
   const { text, isAnswer } = data;
-  const profileImageSrc = isAnswer ? gptImg : getCookie('profileImage');
+  const profileImageSrc = isAnswer ? gptImg : getCookie('profileImage') || defaultProfileImage;
 
   return (
     <div className={`p-4 justify-center text-base md:gap-6 md:py-6 m-auto border-b border-solid bg-[${isAnswer ? '#EDEDED' : '#fff' }] border-[#B5B2B2]`}>
@@ -12,7 +13,7 @@ export default function Conversation({ data }) {
           <div>
             <div className='relative flex'>
               <img 
-              className='rounded-md  w-9 h-9' 
+              className='rounded-md w-9 h-9' 
               src={profileImageSrc} 
               alt="카카오톡 프로필 사진"></img>
             </div>

@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import Dropdown from 'components/Dropdown';
 import { useForm } from 'react-hook-form';
 import { useDispatch, useSelector } from 'react-redux';
@@ -32,14 +32,25 @@ export default function AddComment() {
         const values = getValues();
         dispatch(addQuestion(values.content));
         reset();
-        const res = await axios.post(`${process.env.REACT_APP_BASE_URL}/api/v1/gpt/addComment`, {
-          function: 'ADD_COMMENT',
-          ...values,
-        });
 
-        dispatch(addAnswer(res.data.data.content));
-
-        e.target.style.height = 'auto';
+        try {
+          const res = await axios.post(`${process.env.REACT_APP_BASE_URL}/api/v1/gpt/addComment`, {
+            function: 'ADD_COMMENT',
+            ...values,
+          });
+          dispatch(addAnswer(res.data.data.content));
+          e.target.style.height = '46px';
+        } catch (error) {
+          if (error.response && error.response.status === 400) {
+            console.log(error.toJSON());
+            alert('언어를 선택해 주세요 !');
+            setTimeout(() => {
+              e.target.style.height = '46px';
+            }, 0);
+          } else {
+            console.error('Error:', error);
+          }
+        }
       }
     }
   };
@@ -47,12 +58,26 @@ export default function AddComment() {
   const onSubmit = async (data) => {
     dispatch(addQuestion(data.content));
     reset();
-    const res = await axios.post(`${process.env.REACT_APP_BASE_URL}/api/v1/gpt/addComment`, {
-      function: 'ADD_COMMENT',
-      ...data,
-    });
 
-    dispatch(addAnswer(res.data.data.content));
+    try {
+      const res = await axios.post(`${process.env.REACT_APP_BASE_URL}/api/v1/gpt/addComment`, {
+        function: 'ADD_COMMENT',
+        ...data,
+      });
+
+      dispatch(addAnswer(res.data.data.content));
+      document.getElementById('commentTextArea').style.height = '46px';
+    } catch (error) {
+      if (error.response && error.response.status === 400) {
+        console.log(error.toJSON());
+        alert('언어를 선택해 주세요 !');
+        setTimeout(() => {
+          document.getElementById('commentTextArea').style.height = '46px';     
+        }, 0);
+      } else {
+        console.error('Error:', error);
+      }
+    }
   };
 
   useEffect(() => {}, [conversation]);
@@ -68,6 +93,7 @@ export default function AddComment() {
           <form className='w-full' onSubmit={handleSubmit(onSubmit)}>
             <Dropdown list={languageList} title={'language'} register={register} />
             <textarea
+              id="commentTextArea"
               rows={1}
               className='align-bottom resize-none focus:outline-none mt-2 border-[#3B82F6] border-solid border-[1px] p-2 w-[calc(100%-7.75rem)] h-12 rounded-md'
               placeholder='언어를 변경할 코드를 입력하세요.'

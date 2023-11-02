@@ -18,27 +18,50 @@ export default function SolveAlgorithm() {
       if (!e.shiftKey) {
         e.preventDefault();
         const values = getValues();
-        dispatch(addQuestion(values.problem));
+        dispatch(addQuestion(values.content));
         reset();
-        const res = await axios.post(`${process.env.REACT_APP_BASE_URL}/api/v1/gpt/solveAlgorithm`, {
-          function: 'SOLVE_ALGORITHM',
-          ...values,
-        });
-        dispatch(addAnswer(res.data.data.content));
+
+        try {
+          const res = await axios.post(`${process.env.REACT_APP_BASE_URL}/api/v1/gpt/refactorCode`, {
+            function: 'REFACTOR_CODE',
+            ...values,
+          });
+
+          dispatch(addAnswer(res.data.data.content));
+          e.target.style.height = '46px';
+        } catch (error) {
+          if (error.response && error.response.status === 400) {
+            console.log(error.toJSON());
+            alert('언어를 선택해 주세요 !'); 
+          } else {
+            console.error("error : " ,error);
+          }
+        }
       }
     }
   };
 
   const onSubmit = async (data) => {
-    dispatch(addQuestion(data.problem));
+    dispatch(addQuestion(data.content));
     reset();
-    const res = await axios.post(`${process.env.REACT_APP_BASE_URL}/api/v1/gpt/solveAlgorithm`, {
-      function: 'SOLVE_ALGORITHM',
-      ...data,
-    });
-    
-    dispatch(addAnswer(res.data.data.content));
+
+    try {
+      const res = await axios.post(`${process.env.REACT_APP_BASE_URL}/api/v1/gpt/refactorCode`, {
+        function: 'REFACTOR_CODE',
+        ...data,
+      });
+
+      dispatch(addAnswer(res.data.data.content));
+    } catch (error) {
+      if (error.response && error.response.status === 400) {
+        console.log(error.toJSON());
+        alert('언어를 선택해 주세요 !');
+      } else {
+        console.error('error:', error);
+      }
+    }
   };
+
 
   useEffect(() => {}, [conversation]);
   
