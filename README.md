@@ -1,4 +1,4 @@
-## 👥 Team
+## 🎖️ Team
 <table>
   <tr>
     <td align="center" colspan="1">
@@ -54,7 +54,7 @@
   </tr>
 </table>
 
-## 📌 Summary
+## 🪄 Summary
 <table>
     <tr>
         <th>기간</th>
@@ -71,7 +71,7 @@
 
 </table>
 
-## 📌 Introduce
+## ❤️ Introduce
 
 > **✏️CO-RE, 코드를  다시 쓰다** : 개발자를 위한 GPT 활용 도우미
 > 
