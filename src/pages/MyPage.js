@@ -1,17 +1,12 @@
 import { getCookie, removeCookie } from 'components/Cookie/Cookies';
-import { useRouter } from 'hooks/useRouter';
 import React from 'react'
-import { useSelector } from 'react-redux';
 
 export default function MyPage() {
-    const profileImage = useSelector((state) => state.user.profileImage);
-    const nickname = useSelector((state) => state.user.nickname);
-    const { routeTo, currentPath } = useRouter();
 
-    const isLogout = () => {
-      removeCookie('nickname')
-      removeCookie('profileImage')
-      window.location.href = '/';
+  const isLogout = () => {
+    removeCookie('profileImage')
+    removeCookie('nickname')
+    window.location.href = '/';
     }
 
   return (
@@ -23,4 +18,5 @@ export default function MyPage() {
   </div>
   )
 }
+
 
