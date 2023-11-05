@@ -10,11 +10,20 @@ export default function MyPage() {
     }
 
   return (
-  <div className='grid place-items-center'>
-    <h1>마이페이지</h1>
-    <img className='w-[500px] h-[500px] rounded-[50%]' src={getCookie('profileImage')} alt="프로필 이미지" />
-    <p> {getCookie('nickname')}님 어서오세요 !</p>
-    <button onClick={isLogout}>로그아웃</button>
+  <div>
+    <div className='grid place-items-center w-[636px] h-auto text-center ml-[389px] mt-[40px] mb-[40px] border-[1px] border-solid border-[#3B82F6] p-[40px] rounded-xl'>
+        <h1 className='font-semibold'>기본 정보</h1>
+        <div className='bg-blue-50 w-[560px] p-[30px] rounded-xl'>
+          <img className='ml-[98px] w-[300px] h-[300px] rounded-[50%]' src={getCookie('profileImage')} alt="프로필 이미지" />
+          <p className='font-semibold'>{getCookie('nickname')}</p>
+        </div>
+        <div className='mt-[10px]'>
+          <h1 className='font-semibold'>회원 로그아웃</h1>
+          <div className='bg-blue-50 w-[560px] p-[30px] rounded-xl'>
+            <button className='bg-gray-300 px-[30px] py-[10px]' onClick={isLogout}>로그아웃</button>
+          </div>
+        </div>
+    </div>
   </div>
   )
 }
