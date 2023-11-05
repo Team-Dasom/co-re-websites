@@ -1,71 +1,97 @@
-# Getting Started with Create React App
+## 👥 Team
+<table>
+  <tr>
+    <td align="center" colspan="1">
+      <b>Backend & 팀장</b>
+    </td>
+  </tr>
+  <tr>
+    <td>
+      <img src="https://avatars.githubusercontent.com/u/84304802?v=4" width="120px" height="15%"/>
+    </td>
+  </tr>
+  <tr>
+    <td align="center">
+      <a href="https://github.com/PgmJun">
+      최승준
+      </a>
+    </td>
+  </tr>
+</table>
+<table>
+  <tr>
+    <td align="center" colspan="4">
+      <b>Frontend</b>
+    </td>
+  </tr>
+  <tr>
+    <td>
+      <img src="https://avatars.githubusercontent.com/u/106071687?v=4" width="120px" height="15%"/>
+    </td>
+    <td>
+      <img src="https://avatars.githubusercontent.com/u/114905530?v=4" width="120px" height="15%"/>
+    </td>
+    <td>
+      <img src="https://avatars.githubusercontent.com/u/118805355?v=4" width="120px" height="15%"/>
+    </td>
+  </tr>
+  <tr>
+    <td align="center">
+      <a href="https://github.com/Largopie">
+      송재석
+      </a>
+    </td>
+    <td align="center">
+      <a href="https://github.com/hijiyun">
+      박지윤
+      </a>
+    </td>
+    <td align="center">
+      <a href="https://github.com/imzzok">
+      임서정
+      </a>
+    </td>
+  </tr>
+</table>
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+## 📌 Summary
+<table>
+    <tr>
+        <th>기간</th>
+        <td>2023-09-28 ~ ing</td>
+    </tr>
+    <tr>
+        <th>배포</th>
+        <td><a href="">CO-RE, 코드를  다시 쓰다</a></td>
+    </tr>
+    <tr>
+        <th>기획서</th>
+        <td><a href="">기획서</a></td>
+    </tr>
 
-## Available Scripts
+</table>
 
-In the project directory, you can run:
+## 📌 Introduce
 
-### `npm start`
+> **✏️CO-RE, 코드를  다시 쓰다** : 개발자를 위한 GPT 활용 도우미
+> 
+코딩하다가 이것만 누가 도와줬으면 좋겠다고 생각한 적 있지 않으신가요?   
+**CO-RE**는 개발과 관련된 문제들을 도와줄 수 있는 서비스를 목표로 하고 있습니다.   
+ChatGPT API기반으로 **변수 추천, 코드 리팩토링, 주석 설명**을 제공하는 기능을 가지고 있습니다. 
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+<img src="https://github.com/Team-Dasom/co-re-server/assets/84304802/e52d7cfe-05fa-4000-8028-10645bf95223" width="300" height="100"/>
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+### ✨ 카카오 로그인
+<img width="590px" src="https://github.com/Team-Dasom/co-re-websites/assets/114905530/c44e0bcf-b695-4439-9772-4fc113d27140"/>
 
-### `npm test`
+### ✨ 메인 : 페이지 간략 소개 & ChatGPT 바로가기
+<img width="590px" src="https://github.com/Team-Dasom/co-re-websites/assets/114905530/8c8f93fc-96d0-4675-a137-7c664fabe23d"/>
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+### ✨ 변수명 추천 
+<img width="590px" src="https://github.com/Team-Dasom/co-re-websites/assets/114905530/2d7a2f4f-81c4-4eca-8328-da885475bed8"/>
 
-### `npm run build`
+### ✨ 코드 리팩토링
+<img width="590px" src="https://github.com/Team-Dasom/co-re-websites/assets/114905530/a4dd42c5-3e5c-4af0-81f4-77a1c6a70445"/>
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
-
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
-
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
-
-### `npm run eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
-
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
-
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
-# co-re-websites
+### ✨ 주석 설명
+<img width="590px" src="https://github.com/Team-Dasom/co-re-websites/assets/114905530/c05f298d-c0ea-45f3-abe1-8ebc6f5a5786"/>
