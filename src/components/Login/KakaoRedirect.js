@@ -46,7 +46,7 @@ const KakaoRedirect = (props) => {
           "token" : `${token}`,
         }
         axios
-        .post(`${process.env.REACT_APP_CORE_KAKAO_API_IP_KEY}/api/v1/auth/login`,
+        .post(`${process.env.REACT_APP_BASE_URL}/api/v1/auth/login`,
         body,
         {
           headers: {
@@ -82,7 +82,7 @@ const KakaoRedirect = (props) => {
             "token" : `${token}`,
           }
           axios
-          .post(`${process.env.REACT_APP_CORE_KAKAO_API_IP_KEY}/api/v1/auth/signup`,
+          .post(`${process.env.REACT_APP_BASE_URL}/api/v1/auth/signup`,
           body,
           {
             headers: {
