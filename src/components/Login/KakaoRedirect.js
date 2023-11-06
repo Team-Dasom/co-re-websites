@@ -34,12 +34,8 @@ const KakaoRedirect = (props) => {
         });
         const profileImage = userRes.data.properties.profile_image;
         const nickname = userRes.data.properties.nickname;
-        if(profileImage){
-          setCookie('profileImage',profileImage,{path:'/',secure:true,sameSite:'none',})
-        }
-        if(nickname){
-          setCookie('nickname',nickname,{path:'/',secure:true,sameSite:'none',})
-        }
+        setCookie('profileImage', profileImage)
+        setCookie('nickname',nickname)
         dispatch(setUserProfile({ profileImage, nickname }));
 
         // 여기서 부터 우리 서비스 서버에 요청 보내기 
