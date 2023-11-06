@@ -1,11 +1,12 @@
 import React, { useEffect } from 'react'
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { setUserProfile } from 'store/KakaoLogin/kakaoUserSlice';
-import { setCookie } from 'components/Cookie/Cookies';
+import { getCookie, setCookie } from 'components/Cookie/Cookies';
 import { setToken } from 'store/KakaoLogin/tokenSlice';
 import { setStatus } from 'store/KakaoLogin/statusSlice';
+import {setAccessToken} from 'store/KakaoLogin/kakaoUserSlice'
 
 
 const KakaoRedirect = (props) => { 
@@ -15,9 +16,17 @@ const KakaoRedirect = (props) => {
   const redirect_uri = `${process.env.REACT_APP_KAKAO_REDIRECT_URI}`;
   const navigate = useNavigate();
   const dispatch = useDispatch();
+  const accessToken = useSelector((state) => state.user.accessToken); 
+  // const token = useSelector((state)=>state.)
+  console.log(useSelector((state) => state.user.accessToken))
 
 
   useEffect(() => {
+    if (accessToken) {
+      navigate('/');
+      return;
+    }
+
     (async () => {
       try {
         const res = await axios.post(`https://kauth.kakao.com/oauth/token?client_id=${client_id}&redirect_uri=${redirect_uri}&code=${code}&grant_type=authorization_code`);
@@ -25,8 +34,6 @@ const KakaoRedirect = (props) => {
         dispatch(setToken(token));
         const status = res.status
         dispatch(setStatus(status));
-        // window.localStorage.setItem('token', token);
-
         const userRes = await axios.get('https://kapi.kakao.com/v2/user/me', {
           headers: {
             Authorization: `Bearer ${token}`,
@@ -56,20 +63,13 @@ const KakaoRedirect = (props) => {
         .then((response)=>{
           console.log("CO_RE data : " , response.data);
           const accessToken = response.data.data.accessToken
+          dispatch(setAccessToken({accessToken}));
           const refreshToken = response.data.data.refreshToken
           if(accessToken){
-            setCookie('accessToken',accessToken,{
-              path:'/',
-              secure:true,
-              sameSite:'none',
-            })
+            setCookie('accessToken',accessToken,{path:'/'})
           }
           if(refreshToken){
-            setCookie('refreshToken',refreshToken,{
-              path:'/',
-              secure:true,
-              sameSite:'none',
-            })
+            setCookie('refreshToken',refreshToken,{path:'/'})
           }
         }).catch((e)=>{
           console.log(e.toJSON().status)
@@ -107,9 +107,7 @@ const KakaoRedirect = (props) => {
         navigate('/');
       }
     })();
-  }, []);
-
-
+  }, [accessToken, dispatch]);
   return (
     <div>Redirect Page</div>
   )
