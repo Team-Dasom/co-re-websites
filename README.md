@@ -62,7 +62,7 @@
     </tr>
     <tr>
         <th>배포</th>
-        <td><a href="">CO-RE, 코드를  다시 쓰다</a></td>
+        <td><a href="http://52.79.37.140/">CO-RE, 코드를  다시 쓰다</a></td>
     </tr>
     <tr>
         <th>기획서</th>
@@ -77,12 +77,12 @@
 > 
 코딩하다가 이것만 누가 도와줬으면 좋겠다고 생각한 적 있지 않으신가요?   
 **CO-RE**는 개발과 관련된 문제들을 도와줄 수 있는 서비스를 목표로 하고 있습니다.   
-ChatGPT API기반으로 **변수 추천, 코드 리팩토링, 주석 설명**을 제공하는 기능을 가지고 있습니다. 
+ChatGPT API기반으로 **변수 추천, 코드 리팩토링, 주석 설명, 알고리즘 문제 해설**을 제공하는 기능을 가지고 있습니다. 
 
 <img src="https://github.com/Team-Dasom/co-re-server/assets/84304802/e52d7cfe-05fa-4000-8028-10645bf95223" width="300" height="100"/>
 
-### ✨ 카카오 로그인
-<img width="590px" src="https://github.com/Team-Dasom/co-re-websites/assets/114905530/c44e0bcf-b695-4439-9772-4fc113d27140"/>
+### ✨ 카카오 로그인 & 로그아웃 
+<img width="590px" src="https://github.com/Team-Dasom/co-re-websites/assets/114905530/4818da2c-58f1-47d8-b1bb-bc3d016fcab1"/>
 
 ### ✨ 메인 : 페이지 간략 소개 & ChatGPT 바로가기
 <img width="590px" src="https://github.com/Team-Dasom/co-re-websites/assets/114905530/8c8f93fc-96d0-4675-a137-7c664fabe23d"/>
@@ -92,6 +92,9 @@ ChatGPT API기반으로 **변수 추천, 코드 리팩토링, 주석 설명**을
 
 ### ✨ 코드 리팩토링
 <img width="590px" src="https://github.com/Team-Dasom/co-re-websites/assets/114905530/a4dd42c5-3e5c-4af0-81f4-77a1c6a70445"/>
+
+### ✨ 알고리즘 문제 해설 [BETA]
+<img width="590px" src=""/>
 
 ### ✨ 주석 설명
 <img width="590px" src="https://github.com/Team-Dasom/co-re-websites/assets/114905530/c05f298d-c0ea-45f3-abe1-8ebc6f5a5786"/>
