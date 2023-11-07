@@ -16,7 +16,6 @@ export default function Header() {
   const { routeTo, currentPath } = useRouter();
   // const accessToken = useSelector((state) => state.user.accessToken); 
   // console.log("accessToken : ",accessToken)
-  const accessToken = getCookie('accessToken')
 
   const headerMenuClickHandler = (path) => {
     routeTo(path)
