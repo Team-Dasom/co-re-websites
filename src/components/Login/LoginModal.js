@@ -18,8 +18,8 @@ const LoginModal = ({setIsOpenModal}) => {
 
   return (
     <>
-    <div className='fixed w-full h-full bg-black opacity-60'></div>
-    <div className='fixed border border-solid border-[#3B82F6] w-[521px] h-[361px] ml-[430px] mt-[200px] bg-white '>
+    <div className='fixed z-40 w-full h-full bg-black opacity-60'></div>
+    <div className='fixed left-1/2 -translate-x-1/2 border border-solid border-[#3B82F6] w-[521px] h-[361px] z-50 mt-[150px] z-0 bg-white '>
         <div>
             <img className='cursor-pointer mt-[10px] ml-[480px]' src={loginDelete} alt="loginDelete" onClick={()=>setIsOpenModal(false)}/>
             <img className='mt-[30px] ml-[180px]' src={LoginCoReLogo} alt="LoginCoReLogo" />
