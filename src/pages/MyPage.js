@@ -1,12 +1,14 @@
 import { getCookie, removeCookie } from 'components/Cookie/Cookies';
 import { useRouter } from 'hooks/useRouter';
-import React from 'react'
+import React, { useEffect } from 'react'
 
 export default function MyPage() {
   const { routeTo, currentPath } = useRouter();
   const isLogout = () => {
-    removeCookie('profileImage')
-    removeCookie('nickname')
+    removeCookie('profileImage',{path:'/'})
+    removeCookie('nickname',{path:'/'})
+    removeCookie('accessToken',{path:'/'})
+    removeCookie('refreshToken',{path:'/'})
     routeTo('/');
     }
 
