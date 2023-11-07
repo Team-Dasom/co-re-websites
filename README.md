@@ -94,7 +94,9 @@ ChatGPT API기반으로 **변수 추천, 코드 리팩토링, 주석 설명, 알
 <img width="590px" src="https://github.com/Team-Dasom/co-re-websites/assets/114905530/a4dd42c5-3e5c-4af0-81f4-77a1c6a70445"/>
 
 ### ✨ 알고리즘 문제 해설 [BETA]
-<img width="590px" src=""/>
+<a href="https://www.youtube.com/watch?v=uV-rVil9tao">
+  <img src="https://img.youtube.com/vi/uV-rVil9tao/0.jpg" width="590px" alt="YouTube Video Thumbnail">
+</a>
 
 ### ✨ 주석 설명
 <img width="590px" src="https://github.com/Team-Dasom/co-re-websites/assets/114905530/c05f298d-c0ea-45f3-abe1-8ebc6f5a5786"/>
