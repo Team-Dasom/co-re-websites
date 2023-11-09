@@ -5,13 +5,13 @@ import Answer from 'components/conversation/Conversation';
 import AlgorithmForm from 'components/Form/AlgorithmForm';
 
 export default function SolveAlgorithm() {
-  const languageList = ['Python3', 'C', 'Java', 'Ruby', 'Javascript', 'Kotlin', 'Swift', 'C#', 'Node.js', 'Go', 'D', 'Rust', 'C++'];
+  const languageList = ['Python3', 'C++', 'C', 'Java', 'Ruby', 'Kotlin', 'Swift', 'C#', 'node.js', 'Go', 'D', 'Rust'];
   const conversation = useSelector((state) => state.changeLanguage.conversation);
   const chatBoxRef = useRef();
 
-  const scrollToBottom  = useCallback(() => {
-    chatBoxRef.current.scrollIntoView({behavior: 'smooth', block: 'end', inline: 'nearest'})
-  }, [conversation])
+  const scrollToBottom = useCallback(() => {
+    chatBoxRef.current.scrollIntoView({ behavior: 'smooth', block: 'end', inline: 'nearest' });
+  }, [conversation]);
 
   useEffect(() => {
     scrollToBottom();
@@ -27,7 +27,8 @@ export default function SolveAlgorithm() {
         placeholder='해결할 문제 번호를 입력하세요.'
         addQuestion={addQuestion}
         addAnswer={addAnswer}
-        dropdownList={languageList} />
+        dropdownList={languageList}
+      />
       <div className='flex-shrink-0 h-36 md:h-48'></div>
     </div>
   );
