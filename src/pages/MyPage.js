@@ -1,6 +1,7 @@
 import { getCookie, removeCookie } from 'components/Cookie/Cookies';
 import { useRouter } from 'hooks/useRouter';
-import React, { useEffect } from 'react'
+import React from 'react'
+import Bookmark from './Bookmark';
 
 export default function MyPage() {
   const { routeTo, currentPath } = useRouter();
@@ -22,7 +23,7 @@ export default function MyPage() {
         </div>
         <div className='mt-[10px]'>
           <div className='bg-blue-50 w-[560px] p-[30px] rounded-xl'>
-            <button className='bg-gray-300 px-[30px] py-[10px] mr-10 rounded-md' onClick={()=>routeTo('')}>즐겨찾기</button>
+            <button className='bg-gray-300 px-[30px] py-[10px] mr-10 rounded-md' onClick={()=>routeTo('/Bookmark')}>즐겨찾기</button>
             <button className='bg-gray-300 px-[30px] py-[10px] rounded-md' onClick={isLogout}>로그아웃</button>
           </div>
         </div>
