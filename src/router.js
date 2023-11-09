@@ -11,8 +11,9 @@ import SolveAlgorithm from 'pages/SolveAlgorithmPage';
 import Bookmark from 'pages/Bookmark';
 import VariableBookmark from 'components/Bookmark/VariableBookmark';
 import AlgorithmsBookmark from 'components/Bookmark/AlgorithmsBookmark';
-import addComentBookmark from 'components/Bookmark/AddComentBookmark';
 import RefactorBookmark from 'components/Bookmark/RefactorBookmark';
+import AddComentBookmark from 'components/Bookmark/AddComentBookmark';
+
 
 
 const routerData = [
@@ -93,7 +94,7 @@ const routerData = [
   {
     id: 11,
     path: '/bookmark/addcomentBookmark',
-    element: <addComentBookmark />,
+    element: <AddComentBookmark />,
     withAuth: true
   },
 ]
