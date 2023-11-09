@@ -7,7 +7,7 @@ import AddComentBookmark from 'components/Bookmark/AddComentBookmark';
 
 
 function Bookmark() {
-  const [content, setContent] = useState();
+  const [content, setContent] = useState('first');
 
   const handleClickButton = e => {
     console.log(e.target)
