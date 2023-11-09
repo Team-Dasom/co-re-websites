@@ -21,9 +21,9 @@ export default function MyPage() {
           <p className='font-semibold'>{getCookie('nickname')}</p>
         </div>
         <div className='mt-[10px]'>
-          <h1 className='font-semibold'>회원 로그아웃</h1>
           <div className='bg-blue-50 w-[560px] p-[30px] rounded-xl'>
-            <button className='bg-gray-300 px-[30px] py-[10px]' onClick={isLogout}>로그아웃</button>
+            <button className='bg-gray-300 px-[30px] py-[10px] mr-10 rounded-md' onClick={()=>routeTo('')}>즐겨찾기</button>
+            <button className='bg-gray-300 px-[30px] py-[10px] rounded-md' onClick={isLogout}>로그아웃</button>
           </div>
         </div>
     </div>
