@@ -9,10 +9,6 @@ import { createBrowserRouter } from 'react-router-dom';
 import Header from 'components/Header/Header';
 import SolveAlgorithm from 'pages/SolveAlgorithmPage';
 import Bookmark from 'pages/Bookmark';
-import VariableBookmark from 'components/Bookmark/VariableBookmark';
-import AlgorithmsBookmark from 'components/Bookmark/AlgorithmsBookmark';
-import RefactorBookmark from 'components/Bookmark/RefactorBookmark';
-import AddComentBookmark from 'components/Bookmark/AddComentBookmark';
 
 
 
@@ -71,30 +67,6 @@ const routerData = [
     id: 7,
     path: '/bookmark',
     element: <Bookmark />,
-    withAuth: true
-  },
-  {
-    id: 8,
-    path: '/bookmark/variableBookmark',
-    element: <VariableBookmark />,
-    withAuth: true
-  },
-  {
-    id: 9,
-    path: '/bookmark/AlgorithmsBookmark',
-    element: <AlgorithmsBookmark />,
-    withAuth: true
-  },
-  {
-    id: 10,
-    path: '/bookmark/refactorBookmark',
-    element: <RefactorBookmark />,
-    withAuth: true
-  },
-  {
-    id: 11,
-    path: '/bookmark/addcomentBookmark',
-    element: <AddComentBookmark />,
     withAuth: true
   },
 ]
