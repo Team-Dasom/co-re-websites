@@ -2,7 +2,7 @@ import { configureStore} from '@reduxjs/toolkit';
 import storage from 'redux-persist/lib/storage';
 import sessionStorage from 'redux-persist/es/storage/session';
 import { combineReducers } from 'redux';
-import { persistReducer} from 'redux-persist';
+import { persistReducer, persistStore} from 'redux-persist';
 import userSlice from 'store/KakaoLogin/kakaoUserSlice';
 import tokenReducer from 'store/KakaoLogin/tokenSlice';
 import statusReducer from './KakaoLogin/statusSlice';
@@ -32,5 +32,7 @@ const persistedReducer = persistReducer(persistConfig, reducers);
 const store = configureStore({
   reducer: persistedReducer,
 });
+
+export const persistor = persistStore(store);
 
 export default store;

@@ -4,6 +4,7 @@ import { useRouter } from 'hooks/useRouter';
 import React from 'react'
 import { useDispatch, useSelector } from 'react-redux';
 import { clearAccessToken, clearUserProfile } from 'store/KakaoLogin/kakaoUserSlice';
+import persistor from '../store/store'
 
 export default function MyPage() {
   const dispatch = useDispatch()
@@ -27,6 +28,7 @@ export default function MyPage() {
       removeCookie('refreshToken', { path: '/' });
       dispatch(clearAccessToken({accessToken}));
       routeTo('/');
+      await persistor.purge()
     } catch (error) {
       console.error("로그아웃 요청 중 오류 발생: ", error);
     }
