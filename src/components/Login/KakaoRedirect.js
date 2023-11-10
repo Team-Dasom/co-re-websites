@@ -17,7 +17,6 @@ const KakaoRedirect = (props) => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
   const accessToken = useSelector((state) => state.user.accessToken); 
-  // const token = useSelector((state)=>state.)
   console.log(useSelector((state) => state.user.accessToken))
 
 
@@ -65,16 +64,13 @@ const KakaoRedirect = (props) => {
           const accessToken = response.data.data.accessToken
           dispatch(setAccessToken({accessToken}));
           const refreshToken = response.data.data.refreshToken
-          if(accessToken){
-            setCookie('accessToken',accessToken,{path:'/'})
-          }
           if(refreshToken){
             setCookie('refreshToken',refreshToken,{path:'/'})
           }
         }).catch((e)=>{
           console.log(e.toJSON().status)
           const status = e.toJSON().status
-          if(status === 409){
+          if(status === 409 || status === 404){
 
           // 우리 서비스의 유저가 아니라면 회원가입 하기
           const body = {
@@ -91,6 +87,8 @@ const KakaoRedirect = (props) => {
           })
           .then((response)=>{
             console.log("CO_RE data : " , response.data);
+            const accessToken = response.data.data.accessToken
+            dispatch(setAccessToken({accessToken}));
           }).catch((e)=>{
             console.log(e.toJSON())
           })
