@@ -1,10 +1,12 @@
-import { getCookie } from "components/Cookie/Cookies";
 import gptImg from '../../images/gptImg.svg'
 import defaultProfileImage from '../../images/defaultProfileImage.jpg'
+import { useSelector } from "react-redux";
 
 export default function Conversation({ data }) {
+  const accessToken = useSelector((state) => state.user.accessToken); 
+  const profileImage = useSelector((state) => state.user.profileImage); 
   const { text, isAnswer } = data;
-  const profileImageSrc = isAnswer ? gptImg : getCookie('profileImage') || defaultProfileImage;
+  const profileImageSrc = isAnswer ? gptImg : (accessToken ? profileImage : defaultProfileImage);
 
   return (
     <div className={`animate-fadeIn p-4 justify-center text-base md:gap-6 md:py-6 m-auto border-b border-solid bg-[${isAnswer ? '#EDEDED' : '#fff'}] border-[#B5B2B2]`}>
