@@ -15,6 +15,9 @@ const userSlice = createSlice({
       state.profileImage = action.payload.profileImage;
       state.nickname = action.payload.nickname;
     },
+    clearUserProfile: (state) => {
+      state.accessToken = null;
+    },
     setAccessToken: (state, action) => {
       state.accessToken = action.payload;
     },
@@ -24,6 +27,6 @@ const userSlice = createSlice({
   },
 });
 
-export const { setUserProfile, setAccessToken, clearAccessToken } = userSlice.actions;
+export const { setUserProfile, setAccessToken, clearAccessToken, clearUserProfile } = userSlice.actions;
 
 export default userSlice.reducer;
