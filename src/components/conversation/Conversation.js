@@ -1,12 +1,19 @@
 import gptImg from '../../images/gptImg.svg'
 import defaultProfileImage from '../../images/defaultProfileImage.jpg'
 import { useSelector } from "react-redux";
+import BookmarkBtn from './BookmarkBtn';
+import DeleteBtn from './DeleteBtn';
+
 
 export default function Conversation({ data }) {
   const accessToken = useSelector((state) => state.user.accessToken); 
   const profileImage = useSelector((state) => state.user.profileImage); 
   const { text, isAnswer } = data;
   const profileImageSrc = isAnswer ? gptImg : (accessToken ? profileImage : defaultProfileImage);
+  
+  const handleDelete = () => {
+    console.log('Deleting text:', text);
+  };
 
   return (
     <div className={`animate-fadeIn p-4 justify-center text-base md:gap-6 md:py-6 m-auto border-b border-solid bg-[${isAnswer ? '#EDEDED' : '#fff'}] border-[#B5B2B2]`}>
@@ -24,6 +31,12 @@ export default function Conversation({ data }) {
         <div className='min-h-[20px] flex flex-col items-start gap-3 whitespace-pre-wrap break-words overflow-x-auto'>
           <div>{text}</div>
         </div>
+          {isAnswer ? (
+                <div className='flex ml-auto space-x-2'>
+                  <BookmarkBtn />
+                  <DeleteBtn onDelete={handleDelete}/>
+                </div>
+              ) : ''}
       </div>
     </div>
   );
