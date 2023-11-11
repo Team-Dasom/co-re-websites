@@ -1,12 +1,12 @@
 import React, { useCallback, useEffect, useRef } from 'react';
 import { useSelector } from 'react-redux';
-import { addAnswer, addQuestion } from 'store/changeLanguage/changeLanguageSlice';
-import Answer from 'components/conversation/Conversation';
 import AlgorithmForm from 'components/Form/AlgorithmForm';
+import { addAnswer, addQuestion } from 'store/solveAlgorithm/solveAlgorithmSlice';
+import Conversation from 'components/conversation/Conversation';
 
 export default function SolveAlgorithm() {
-  const languageList = ['Python3', 'C++', 'C', 'Java', 'Ruby', 'Kotlin', 'Swift', 'C#', 'node.js', 'Go', 'D', 'Rust'];
-  const conversation = useSelector((state) => state.changeLanguage.conversation);
+  const languageList = ['Python', 'C++', 'C', 'Java', 'Ruby', 'Kotlin', 'Swift', 'C#', 'JavaScript', 'Go', 'D', 'Rust'];
+  const conversation = useSelector((state) => state.solveAlgorithm.conversation);
   const chatBoxRef = useRef();
 
   const scrollToBottom = useCallback(() => {
@@ -20,7 +20,7 @@ export default function SolveAlgorithm() {
   return (
     <div ref={chatBoxRef}>
       {conversation.map((item) => {
-        return <Answer key={item.id} data={item} isAnswer={item.isAnswer} />;
+        return <Conversation key={item.id} data={item} isAnswer={item.isAnswer} />;
       })}
       <AlgorithmForm
         camelCaseAPI='solveAlgorithm'

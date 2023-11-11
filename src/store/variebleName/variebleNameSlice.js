@@ -1,7 +1,7 @@
 import { createSlice } from '@reduxjs/toolkit';
 
 const initialState = {
-  conversation: []
+  conversation: [],
 };
 
 const variebleNameSlice = createSlice({
@@ -9,11 +9,11 @@ const variebleNameSlice = createSlice({
   initialState,
   reducers: {
     addQuestion: ({ conversation }, action) => {
-      conversation.push({ text: action.payload, id: Date.now(), isAnswer: false });
+      conversation.push({ text: action.payload.content, language: action.payload.language, id: Date.now(), isAnswer: false });
     },
     addAnswer: ({ conversation }, action) => {
-      conversation.push({text: action.payload, id: Date.now(), isAnswer: true});
-    }
+      conversation.push({ text: action.payload.content, language: action.payload.language, id: Date.now(), isAnswer: true });
+    },
   },
 });
 

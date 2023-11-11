@@ -4,8 +4,8 @@ const initialState = {
   conversation: [],
 };
 
-const refactorCodeSlice = createSlice({
-  name: 'refactorCodeReducer',
+const solveAlgorithmSlice = createSlice({
+  name: 'changeLanguageReducer',
   initialState,
   reducers: {
     addQuestion: ({ conversation }, action) => {
@@ -17,6 +17,6 @@ const refactorCodeSlice = createSlice({
   },
 });
 
-export const { addQuestion, addAnswer } = refactorCodeSlice.actions;
+export const { addQuestion, addAnswer } = solveAlgorithmSlice.actions;
 
-export default refactorCodeSlice.reducer;
+export default solveAlgorithmSlice.reducer;
