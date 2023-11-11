@@ -10,6 +10,10 @@ export default function Conversation({ data }) {
   const profileImage = useSelector((state) => state.user.profileImage); 
   const { text, isAnswer } = data;
   const profileImageSrc = isAnswer ? gptImg : (accessToken ? profileImage : defaultProfileImage);
+  
+  const handleDelete = () => {
+    console.log('Deleting text:', text);
+  };
 
   return (
     <div className={`animate-fadeIn p-4 justify-center text-base md:gap-6 md:py-6 m-auto border-b border-solid bg-[${isAnswer ? '#EDEDED' : '#fff'}] border-[#B5B2B2]`}>
@@ -30,7 +34,7 @@ export default function Conversation({ data }) {
           {isAnswer ? (
                 <div className='flex ml-auto space-x-2'>
                   <BookmarkBtn />
-                  <DeleteBtn />
+                  <DeleteBtn onDelete={handleDelete}/>
                 </div>
               ) : ''}
       </div>
