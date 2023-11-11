@@ -1,6 +1,9 @@
 import gptImg from '../../images/gptImg.svg'
 import defaultProfileImage from '../../images/defaultProfileImage.jpg'
 import { useSelector } from "react-redux";
+import BookmarkBtn from './BookmarkBtn';
+import DeleteBtn from './DeleteBtn';
+
 
 export default function Conversation({ data }) {
   const accessToken = useSelector((state) => state.user.accessToken); 
@@ -24,6 +27,12 @@ export default function Conversation({ data }) {
         <div className='min-h-[20px] flex flex-col items-start gap-3 whitespace-pre-wrap break-words overflow-x-auto'>
           <div>{text}</div>
         </div>
+          {isAnswer ? (
+                <div className='flex ml-auto space-x-2'>
+                  <BookmarkBtn />
+                  <DeleteBtn />
+                </div>
+              ) : ''}
       </div>
     </div>
   );
