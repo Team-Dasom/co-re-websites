@@ -22,7 +22,10 @@ export default function TextAreaForm({ camelCaseAPI, placeholder, addQuestion, a
 
   const onSubmit = async (data) => {
     const inputData = data;
-    dispatch(addQuestion(inputData.content));
+    dispatch(addQuestion({
+      content: inputData.content,
+      language: inputData.language,
+    }));
     resetField('content');
     try {
       setLoading(true);
@@ -31,7 +34,10 @@ export default function TextAreaForm({ camelCaseAPI, placeholder, addQuestion, a
         ...inputData,
       });
 
-      dispatch(addAnswer(res.data.data.content));
+      dispatch(addAnswer({
+        content: res.data.data.content,
+        language: inputData.language,
+      }));
     } catch (error) {
       if (error.response && error.response.status === 400) {
         console.log(error.toJSON());
@@ -50,7 +56,10 @@ export default function TextAreaForm({ camelCaseAPI, placeholder, addQuestion, a
         e.preventDefault();
         const values = getValues();
         resetField('content');
-        dispatch(addQuestion(values.content));
+        dispatch(addQuestion({
+          content: values.content,
+          language: values.language,
+        }));
         e.target.rows = 1;
 
         try {
@@ -60,7 +69,10 @@ export default function TextAreaForm({ camelCaseAPI, placeholder, addQuestion, a
             ...values,
           });
 
-          dispatch(addAnswer(res.data.data.content));
+          dispatch(addAnswer({
+            content : res.data.data.content,
+            language: values.language,
+          }));
         } catch (error) {
           if (error.response && error.response.status === 400) {
             console.log(error.toJSON());

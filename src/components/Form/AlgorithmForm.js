@@ -24,7 +24,12 @@ export default function AlgorithmForm({ camelCaseAPI, placeholder, addQuestion, 
       if (!e.shiftKey) {
         e.preventDefault();
         const values = getValues();
-        dispatch(addQuestion(values.problem));
+        dispatch(
+          addQuestion({
+            content: values.problem,
+            language: values.language,
+          }),
+        );
         resetField('problem');
 
         try {
@@ -34,7 +39,12 @@ export default function AlgorithmForm({ camelCaseAPI, placeholder, addQuestion, 
             ...values,
           });
 
-          dispatch(addAnswer(res.data.data.content));
+          dispatch(
+            addAnswer({
+              content: res.data.data.content,
+              language: values.language,
+            }),
+          );
           e.target.style.height = '46px';
         } catch (error) {
           if (error.response && error.response.status === 400) {
@@ -52,7 +62,12 @@ export default function AlgorithmForm({ camelCaseAPI, placeholder, addQuestion, 
 
   const onSubmit = async (data) => {
     const inputData = data;
-    dispatch(addQuestion(inputData.content));
+    dispatch(
+      addQuestion({
+        content: inputData.content,
+        language: inputData.language,
+      }),
+    );
     resetField('problem');
 
     try {
@@ -62,7 +77,12 @@ export default function AlgorithmForm({ camelCaseAPI, placeholder, addQuestion, 
         ...inputData,
       });
 
-      dispatch(addAnswer(res.data.data.content));
+      dispatch(
+        addAnswer({
+          content: res.data.data.content,
+          language: inputData.language,
+        }),
+      );
     } catch (error) {
       if (error.response && error.response.status === 400) {
         console.log(error.toJSON());
@@ -131,7 +151,7 @@ export default function AlgorithmForm({ camelCaseAPI, placeholder, addQuestion, 
               }}
               {...register('problem', {
                 // 입력된 값 뒤에 '번'을 추가
-                setValueAs: (value) => value + '번',
+                setValueAs: (value) => `solveProblem = ${value}번`,
               })}
             />
             <button
