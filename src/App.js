@@ -21,7 +21,7 @@ export default function App() {
       }
     };
   }
-  hideConsoleMessage("Element previously highlighted. To highlight again, first unset `dataset.highlighted`","WARN:");
+  hideConsoleMessage("Element previously highlighted. To highlight again, first unset `dataset.highlighted`");
   hideConsoleMessage("WARN:");
   return (
     <>
