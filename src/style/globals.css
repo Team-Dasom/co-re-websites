@@ -3,17 +3,21 @@
 @tailwind utilities;
 
 .all-center {
-  @apply flex justify-center items-center
+  @apply flex justify-center items-center;
 }
 
 .click {
-  @apply text-[#3B82F6] cursor-pointer
+  @apply text-[#3B82F6] cursor-pointer;
 }
 
 .menu-text-hover {
-  @apply hover:text-[#3B82F6] cursor-pointer
+  @apply hover:text-[#3B82F6] cursor-pointer;
 }
 
 .co-re-color {
-  @apply text-[#3B82F6]
+  @apply text-[#3B82F6];
+}
+
+.hover-co-re-color {
+  @apply hover:text-[#3B82F6];
 }

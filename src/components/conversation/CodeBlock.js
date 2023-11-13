@@ -3,6 +3,7 @@ import hljs from 'highlight.js';
 import 'highlight.js/styles/atom-one-dark.css';
 import DeleteBtn from './DeleteBtn';
 import BookmarkBtn from './BookmarkBtn';
+import CopyBtn from './CopyBtn';
 
 export default function CodeBlock({ code, language, isAnswer }) {
   useEffect(() => {
@@ -25,6 +26,7 @@ export default function CodeBlock({ code, language, isAnswer }) {
           </div>
           {isAnswer && (
             <div className='flex ml-auto gap-2 items-center'>
+              <CopyBtn text={code} />
               <BookmarkBtn />
               <DeleteBtn onDelete={handleDelete} />
             </div>

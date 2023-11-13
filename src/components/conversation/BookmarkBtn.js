@@ -1,18 +1,16 @@
 import React, { useState } from 'react';
-import defaultBookmarkImg from 'images/defaultBookmarkImg.svg';
-import onBookmarkImg from 'images/OnBookmarkImg.svg';
+import { AiOutlineFolderAdd, AiFillFolder } from 'react-icons/ai';
 
 const BookmarkBtn = () => {
   const [bookmark, setBookmark] = useState(false);
 
-  const isOnBookmark = () => {
+  const isBookmark = () => {
     setBookmark(!bookmark);
   };
+
   return (
-    <div className='flex items-center justify-center'>
-      <button className='w-[20px] text-white' onClick={isOnBookmark}>
-        {bookmark ? <img src={onBookmarkImg} alt='Bookmarked' /> : <img src={defaultBookmarkImg} alt='Default' />}
-      </button>
+    <div className='all-center hover-co-re-color'>
+      <button onClick={isBookmark}>{bookmark ? <AiFillFolder size={'1.25rem'} /> : <AiOutlineFolderAdd size={'1.25rem'} />}</button>
     </div>
   );
 };
