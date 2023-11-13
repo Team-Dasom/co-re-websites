@@ -8,6 +8,8 @@ import KakaoRedirect from 'components/Login/KakaoRedirect';
 import { createBrowserRouter } from 'react-router-dom';
 import Header from 'components/Header/Header';
 import SolveAlgorithm from 'pages/SolveAlgorithmPage';
+import Bookmark from 'pages/Bookmark';
+
 
 
 const routerData = [
@@ -59,6 +61,12 @@ const routerData = [
     id: 6,
     path: '/mypage',
     element: <MyPage />,
+    withAuth: true
+  },
+  {
+    id: 7,
+    path: '/bookmark',
+    element: <Bookmark />,
     withAuth: true
   },
 ]

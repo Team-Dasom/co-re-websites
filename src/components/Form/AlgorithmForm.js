@@ -1,7 +1,7 @@
-import axios from "axios";
-import { useState } from "react";
-import { useForm } from "react-hook-form";
-import { useDispatch } from "react-redux";
+import axios from 'axios';
+import { useState } from 'react';
+import { useForm } from 'react-hook-form';
+import { useDispatch } from 'react-redux';
 
 const isUpperCase = (char) => {
   return char === char.toUpperCase();
@@ -15,7 +15,7 @@ const camelCaseToSnakeCase = (str) => {
 };
 
 export default function AlgorithmForm({ camelCaseAPI, placeholder, addQuestion, addAnswer, dropdownList }) {
-  const { register, handleSubmit, reset, getValues } = useForm();
+  const { register, handleSubmit, resetField, getValues } = useForm();
   const dispatch = useDispatch();
   const [loading, setLoading] = useState(false);
 
@@ -24,8 +24,13 @@ export default function AlgorithmForm({ camelCaseAPI, placeholder, addQuestion, 
       if (!e.shiftKey) {
         e.preventDefault();
         const values = getValues();
-        dispatch(addQuestion(values.problem));
-        reset();
+        dispatch(
+          addQuestion({
+            content: values.problem,
+            language: values.language,
+          }),
+        );
+        resetField('problem');
 
         try {
           setLoading(true);
@@ -34,7 +39,12 @@ export default function AlgorithmForm({ camelCaseAPI, placeholder, addQuestion, 
             ...values,
           });
 
-          dispatch(addAnswer(res.data.data.content));
+          dispatch(
+            addAnswer({
+              content: res.data.data.content,
+              language: values.language,
+            }),
+          );
           e.target.style.height = '46px';
         } catch (error) {
           if (error.response && error.response.status === 400) {
@@ -52,8 +62,13 @@ export default function AlgorithmForm({ camelCaseAPI, placeholder, addQuestion, 
 
   const onSubmit = async (data) => {
     const inputData = data;
-    dispatch(addQuestion(inputData.content));
-    reset();
+    dispatch(
+      addQuestion({
+        content: inputData.content,
+        language: inputData.language,
+      }),
+    );
+    resetField('problem');
 
     try {
       setLoading(true);
@@ -62,7 +77,12 @@ export default function AlgorithmForm({ camelCaseAPI, placeholder, addQuestion, 
         ...inputData,
       });
 
-      dispatch(addAnswer(res.data.data.content));
+      dispatch(
+        addAnswer({
+          content: res.data.data.content,
+          language: inputData.language,
+        }),
+      );
     } catch (error) {
       if (error.response && error.response.status === 400) {
         console.log(error.toJSON());
@@ -131,7 +151,7 @@ export default function AlgorithmForm({ camelCaseAPI, placeholder, addQuestion, 
               }}
               {...register('problem', {
                 // 입력된 값 뒤에 '번'을 추가
-                setValueAs: (value) => value + '번',
+                setValueAs: (value) => `solveProblem = ${value}번`,
               })}
             />
             <button
@@ -142,7 +162,11 @@ export default function AlgorithmForm({ camelCaseAPI, placeholder, addQuestion, 
                 <>
                   <svg className='w-5 h-5 mr-3 -ml-1 text-white animate-spin' viewBox='0 0 24 24'>
                     <circle className='opacity-25' cx='12' cy='12' r='10' stroke='currentColor' strokeWidth='4'></circle>
-                    <path className='opacity-75' fill='currentColor' d='M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z'></path>
+                    <path
+                      className='opacity-75'
+                      fill='currentColor'
+                      d='M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z'
+                    ></path>
                   </svg>
                   Loading
                 </>

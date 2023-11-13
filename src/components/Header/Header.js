@@ -12,7 +12,8 @@ import ChatGPT from '../../images/gptImg.svg'
 export default function Header() {
 
   const [isOpenModal, setIsOpenModal] = useState(false);
-  const profileImage = useSelector((state) => state.user.profileImage);
+  const profilimg = useSelector((state) => state.user.profileImage); 
+  const accessToken = useSelector((state) => state.user.accessToken);
   const { routeTo, currentPath } = useRouter();
 
   const headerMenuClickHandler = (path) => {
@@ -53,10 +54,10 @@ export default function Header() {
       <div
         className='flex items-center justify-end w-[10%] text-orange-700'
       >
-        {getCookie('profileImage') ? ( 
+        { accessToken ? ( 
                   <div>
                     <img className='flex items-center justify-center w-[45px] h-[45px] gap-2 mr-4 rounded-[50%] cursor-pointer h-3/5' 
-                      src={getCookie('profileImage')} 
+                      src={profilimg} 
                       onClick={()=>routeTo('/mypage')}
                       alt="프로필 이미지" />
                   </div>
