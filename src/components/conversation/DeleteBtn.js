@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import deleteBtn from 'images/DeleteBtn.svg';
+import { AiFillDelete } from 'react-icons/ai';
 
 const DeleteBtn = ({ onDelete }) => {
   const [isDelete, setIsDelete] = useState(false);
@@ -12,9 +12,9 @@ const DeleteBtn = ({ onDelete }) => {
   };
 
   return (
-    <div className='flex items-center justify-center'>
-      <button className='w-[20px]' onClick={isGoDelete}>
-        <img src={deleteBtn} alt='Default' />
+    <div className='all-center hover-co-re-color'>
+      <button onClick={isGoDelete}>
+        <AiFillDelete size={'1rem'} />
       </button>
     </div>
   );
