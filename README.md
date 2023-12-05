@@ -54,6 +54,9 @@
   </tr>
 </table>
 
+## 🏛️ Architecture
+<img width="590px" src="https://github.com/Team-Dasom/co-re-websites/assets/106071687/dd50fc36-9874-4c49-bb9f-335b999b5e2c"/>
+
 ## 🪄 Summary
 <table>
     <tr>
